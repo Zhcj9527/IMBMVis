@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <h1>我是App</h1>
+    <h1>add title</h1>
   </div>
 </template>
 
