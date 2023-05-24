@@ -1,7 +1,9 @@
 <<<<<<< HEAD
+
 # IMBMVis
-这是一个仿运营平台项目模板从0到1开发，包含数据大屏、权限等业务，主要技术栈：Vue3+TypeScript+Vue-router+Pinia+Element-plus+Axios+Echarts
-=======
+
+# 这是一个仿运营平台项目模板从 0 到 1 开发，包含数据大屏、权限等业务，主要技术栈：Vue3+TypeScript+Vue-router+Pinia+Element-plus+Axios+Echarts
+
 # Vue 3 + TypeScript + Vite
 
 This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
@@ -20,4 +22,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
->>>>>>> 67646c3 (“create-program”)
+   > > > > > > > 67646c3 (“create-program”)
