@@ -7,14 +7,11 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 
-const str = "woaini";
+const str = 'woaini'
 
-const fun = ()=>
-{
-  console.log(str);
-  
+const fun = () => {
+  console.log(str)
 }
-
 
 fun()
 </script>
