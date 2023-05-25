@@ -1,7 +1,6 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from 'vue-router'
 // 引入路由
-import { constantRoutes } from "./routes";
-
+import { constantRoutes } from './routes'
 
 let router = createRouter({
   // 路由模式
@@ -10,11 +9,10 @@ let router = createRouter({
   scrollBehavior() {
     return {
       left: 0,
-      top: 0
+      top: 0,
     }
   },
-  routes: constantRoutes
+  routes: constantRoutes,
 })
-
 
 export default router
