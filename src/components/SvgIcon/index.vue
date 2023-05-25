@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-
 // 接收父组件传递过来的参数
 defineProps({
   // xlink:href属性值得前缀

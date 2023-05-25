@@ -1,9 +1,15 @@
 <template>
   <div>
     <h1>我是App根组件</h1>
+    <router-view></router-view>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
 
-<style scoped></style>
+
+</script>
+
+<style scoped>
+
+</style>
