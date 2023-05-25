@@ -6,11 +6,14 @@ import { Names } from '@/store-namespaced'
 import { reqLogin } from '@/api/user'
 // 引入类型
 import type { loginForm, loginResponseData } from '@/api/user/type'
+import type { UserState } from './types'
+// 引入token工具
+import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
 
 export const useUserStore = defineStore(Names.USER, {
-  state: () => {
+  state: (): UserState => {
     return {
-      token: <string>localStorage.getItem('TOKEN'), // 用户唯一标识
+      token: GET_TOKEN(), // 用户唯一标识
     }
   },
   getters: {},
@@ -21,9 +24,9 @@ export const useUserStore = defineStore(Names.USER, {
       // 成功--> token
       // 失败--> error.message
       if (result.code === 200) {
-        // this.token = result.data.token
+        // this.token = result.data.token as string
         // token持久化
-        localStorage.setItem('TOKEN', result.data.token)
+        SET_TOKEN(result.data.token!)
         // 返回一个成功的promise
         return 'ok'
       } else {
