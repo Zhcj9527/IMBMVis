@@ -1,21 +1,19 @@
 // 创建用户仓库
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia'
 // 引入用户仓库的name
-import { Names } from "@/store-namespaced";
+import { Names } from '@/store-namespaced'
 // 引入接口
-import { reqLogin } from "@/api/user";
+import { reqLogin } from '@/api/user'
 // 引入类型
-import type { loginForm, loginResponseData } from "@/api/user/type";
+import type { loginForm, loginResponseData } from '@/api/user/type'
 
 export const useUserStore = defineStore(Names.USER, {
   state: () => {
     return {
-      token: <string>localStorage.getItem('TOKEN') // 用户唯一标识
+      token: <string>localStorage.getItem('TOKEN'), // 用户唯一标识
     }
   },
-  getters: {
-
-  },
+  getters: {},
   actions: {
     // 用户登陆
     async userLogin(data: loginForm) {
@@ -31,6 +29,6 @@ export const useUserStore = defineStore(Names.USER, {
       } else {
         return Promise.reject(new Error(result.data.message))
       }
-    }
-  }
+    },
+  },
 })

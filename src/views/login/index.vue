@@ -9,16 +9,32 @@
           <h2>Welcome to IMBMVis</h2>
           <el-form-item label="" size="default">
             <!--  v-model="" placeholder="" size="normal" clearable @change="" -->
-            <el-input v-model="loginForm.username" :prefix-icon="User" placeholder="account"></el-input>
+            <el-input
+              v-model="loginForm.username"
+              :prefix-icon="User"
+              placeholder="account"
+            ></el-input>
           </el-form-item>
           <el-form-item label="" size="default">
             <!--  v-model="" placeholder="" size="normal" clearable @change="" -->
-            <el-input v-model="loginForm.password" :prefix-icon="Lock" placeholder="password" show-password
-              type="password"></el-input>
+            <el-input
+              v-model="loginForm.password"
+              :prefix-icon="Lock"
+              placeholder="password"
+              show-password
+              type="password"
+            ></el-input>
           </el-form-item>
           <el-form-item>
             <!-- <el-button type="primary" @click="onSubmit">立即创建</el-button> -->
-            <el-button :loading="isLoading" class="login_btn" type="primary" @click="login">Login</el-button>
+            <el-button
+              :loading="isLoading"
+              class="login_btn"
+              type="primary"
+              @click="login"
+            >
+              Login
+            </el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -28,10 +44,10 @@
 
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { ElNotification } from 'element-plus';
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import type { loginForm } from '@/api/user/type';
+import { ElNotification } from 'element-plus'
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import type { loginForm } from '@/api/user/type'
 // 引入用户仓库
 import { useUserStore } from '@/store/modules/user'
 
@@ -43,7 +59,7 @@ let isLoading = ref<boolean>(false)
 // 收集账号与密码
 const loginForm: loginForm = reactive({
   username: 'admin',
-  password: '111111'
+  password: '111111',
 })
 
 // 登陆按钮的回调
@@ -52,14 +68,14 @@ const login = async () => {
   isLoading.value = true
   try {
     // 用户登陆
-    await userStore.userLogin(loginForm)    
+    await userStore.userLogin(loginForm)
     // 编程式导航 路由跳转
     $router.push('/')
     // 登陆成功的信息
     ElNotification({
       type: 'success',
       title: 'Success',
-      message: 'This is a success message'
+      message: 'This is a success message',
     })
     // 登陆成功，加载结束
     isLoading.value = false
@@ -69,12 +85,10 @@ const login = async () => {
     // 登陆失败
     ElNotification({
       type: 'error',
-      message: (error as Error).message
+      message: (error as Error).message,
     })
   }
 }
-
-
 </script>
 
 <style scoped lang="scss">
@@ -108,4 +122,5 @@ const login = async () => {
       width: 100%;
     }
   }
-}</style>
+}
+</style>
