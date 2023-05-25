@@ -12,13 +12,23 @@ const app = createApp(App) // 获取应用实例对象
 
 // 使用element-plus插件
 app.use(ElementPlus, {
-  locale: zhCn // 中文---配置element-plus国际化
+  locale: zhCn, // 中文---配置element-plus国际化
 })
+
 // svg插件需要配置
 import 'virtual:svg-icons-register'
 
+// 自定义插件：注册整个项目的全局组件
+import globalComponent from '@/components'
+// 安装自定义插件
+app.use(globalComponent)
 
-console.log(import.meta.env);
+// 引入模板的全局样式
+import '@/styles/index.scss'
+
+
+
+
 
 
 app.mount('#app')
