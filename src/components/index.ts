@@ -14,6 +14,5 @@ export default {
       // 注册为全局组件
       app.component(key, allGlobalComponent[key])
     })
-
-  }
+  },
 }

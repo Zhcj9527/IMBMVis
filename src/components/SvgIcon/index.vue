@@ -7,7 +7,7 @@
   </svg>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, reactive } from 'vue'
 
 // 接收父组件传递过来的参数
@@ -15,24 +15,24 @@ defineProps({
   // xlink:href属性值得前缀
   prefix: {
     type: String,
-    default: '#icon-'
+    default: '#icon-',
   },
   // 图标svg名字
   name: String,
   // 图标的颜色
   color: {
     type: String,
-    default: ''
+    default: '',
   },
   // 图标的大小
   width: {
     type: String,
-    default: "16px"
+    default: '16px',
   },
   height: {
     type: String,
-    default: "16px"
-  }
+    default: '16px',
+  },
 })
 </script>
 

@@ -1,33 +1,16 @@
 <template>
   <div>
-    <h1>Axios TSET</h1>
+    <h1>我是App根组件</h1>
   </div>
 </template>
 
-<script setup lang="ts">
-import request from './utils/request';
-import { onMounted } from 'vue';
+<script setup lang='ts'>
 
-onMounted(() => {
-  request({
-    url: '/user/login',
-    method: 'post',
-    data: {
-      username: 'admin',
-      password: '111111'
-    }
-  }).then((res) => {
-    console.log(res);
-    
-  })
-})
+
+
 
 </script>
 
-<style scoped lang="scss">
-div{
-  h1 {
-    color: $color;
-  }
-}
+<style scoped>
+
 </style>
