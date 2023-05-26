@@ -1,3 +1,4 @@
-export enum Names {
+export const enum Names {
   USER = 'User',
+  SETTING = 'Setting'
 }

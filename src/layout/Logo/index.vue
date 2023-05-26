@@ -10,15 +10,22 @@
 import setting from '@/setting'
 </script>
 
+<!-- 给组件个名字 -->
+<script lang="ts">
+export default {
+  name: 'Logo'
+}
+</script>
+
 <style scoped lang="scss">
 .logo {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
-  padding: 20px;
+  padding: 10px;
 
-  width: 100%;
+  width: 80%;
   height: $base-menu-logo-height;
 
   img {

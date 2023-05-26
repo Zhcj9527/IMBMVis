@@ -14,6 +14,13 @@ import Breadcrumb from './breadcrumb/index.vue'
 import Setting from './setting/index.vue'
 </script>
 
+<!-- 给组件个名字 -->
+<script lang="ts">
+export default {
+  name: 'Tabbar'
+}
+</script>
+
 <style scoped lang="scss">
 .tabbar {
   display: flex;

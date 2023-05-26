@@ -9,4 +9,11 @@
 
 <script setup lang="ts"></script>
 
+<!-- 给组件个名字 -->
+<script lang="ts">
+export default {
+  name: 'Main'
+}
+</script>
+
 <style scoped lang="scss"></style>

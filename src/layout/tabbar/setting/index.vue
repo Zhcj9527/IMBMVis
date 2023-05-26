@@ -24,6 +24,13 @@
 import setting from '../../../setting'
 </script>
 
+<!-- 给组件个名字 -->
+<script lang="ts">
+export default {
+  name: 'Setting'
+}
+</script>
+
 <style scoped lang="scss">
 img {
   margin: 0 15px;
