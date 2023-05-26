@@ -1,24 +1,38 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_slider"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <Logo></Logo>
       <!-- 展示菜单 -->
       <!-- 滚动条 -->
       <el-scrollbar class="scrollbar">
         <!-- 菜单 -->
-        <el-menu :default-active="$route.path" background-color="#001526" text-color="white" :collapse="settingStore.isExpand">
+        <el-menu
+          :default-active="$route.path"
+          background-color="#001526"
+          text-color="white"
+          :collapse="settingStore.isExpand"
+        >
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_tabbar"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <!-- 顶部导航 -->
       <Tabbar></Tabbar>
     </div>
     <!-- 内容展示区域  -->
-    <div class="layout_main" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_main"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <Main></Main>
     </div>
   </div>
@@ -45,7 +59,7 @@ let settingStore = useSettingStore()
 <!-- 给组件个名字 -->
 <script lang="ts">
 export default {
-  name: 'Layout'
+  name: 'Layout',
 }
 </script>
 
@@ -91,7 +105,7 @@ export default {
 
     &.isExpand {
       left: $base-menu-min-width;
-      width: calc(100% - $base-menu-min-width)
+      width: calc(100% - $base-menu-min-width);
     }
   }
 
@@ -111,7 +125,7 @@ export default {
 
     &.isExpand {
       left: $base-menu-min-width;
-      width: calc(100% - $base-menu-min-width)
+      width: calc(100% - $base-menu-min-width);
     }
   }
 }

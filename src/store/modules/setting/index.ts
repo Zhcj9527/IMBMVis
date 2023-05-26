@@ -7,14 +7,9 @@ import type { SettingStore } from './type'
 export const useSettingStore = defineStore(Names.SETTING, {
   state: (): SettingStore => {
     return {
-      isExpand: false
+      isExpand: false,
     }
   },
-  getters:{},
-  actions:{}
+  getters: {},
+  actions: {},
 })
-
-
-
-
-

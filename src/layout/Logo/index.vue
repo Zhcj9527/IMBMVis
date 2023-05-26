@@ -13,7 +13,7 @@ import setting from '@/setting'
 <!-- 给组件个名字 -->
 <script lang="ts">
 export default {
-  name: 'Logo'
+  name: 'Logo',
 }
 </script>
 

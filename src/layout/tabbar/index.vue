@@ -17,7 +17,7 @@ import Setting from './setting/index.vue'
 <!-- 给组件个名字 -->
 <script lang="ts">
 export default {
-  name: 'Tabbar'
+  name: 'Tabbar',
 }
 </script>
 

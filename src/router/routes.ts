@@ -19,9 +19,9 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     redirect: '/home',
     component: () => import('@/layout/index.vue'),
     meta: {
-      title: 'layout',
+      title: '',
       isHidden: false, // 是否隐藏
-      icon: 'Avatar', // 前缀图标
+      icon: '', // 前缀图标
     },
     children: [
       {
@@ -65,6 +65,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       isHidden: false, // 是否隐藏
       icon: 'Rank', // 前缀图标
     },
+    redirect:"/acl/user",
     children: [
       {
         path: '/acl/user',
@@ -107,6 +108,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       isHidden: false, // 是否隐藏
       icon: 'CreditCard', // 前缀图标
     },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

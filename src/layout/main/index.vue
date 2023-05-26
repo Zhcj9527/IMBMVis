@@ -12,7 +12,7 @@
 <!-- 给组件个名字 -->
 <script lang="ts">
 export default {
-  name: 'Main'
+  name: 'Main',
 }
 </script>
 
