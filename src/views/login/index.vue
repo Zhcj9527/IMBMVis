@@ -59,12 +59,12 @@ const validatorUserName = (rule: any, value: any, callback: any) => {
   // value: 表单元素文本内容
   // callback: 符合条件放行即可，不符合条件则是注入错误提示信息
   // 还可以写正则的
-  if (/^\d{5,10}$/.test(value)) {
+  // if (/^\d{4,10}$/.test(value)) {
+  if (value.length >= 5) {
     callback()
   } else {
     callback(new Error('账号长度至少为5位'))
   }
-
 }
 
 // 表单验证rules
@@ -122,6 +122,8 @@ const login = async () => {
 
 <style scoped lang="scss">
 .login_container {
+  overflow: hidden;
+  
   width: 100%;
   height: 100vh;
   background: url('@/assets/images/background.jpg') no-repeat;

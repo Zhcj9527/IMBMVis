@@ -1,2 +1,18 @@
-/* 项目中提供scss全局变量 */
-$color: skyblue
+/* 项目中提供scss全局变量 
+    每一个变量结束后都需要写   ;
+*/
+
+// 左侧菜单宽度
+$base-menu-width: 260px;
+// 左侧菜单的背景颜色
+$base-menu-background: #001526;
+
+// 左侧菜单logo高度
+$base-menu-logo-height: 60px;
+// 左侧菜单logo右侧文字大小
+$base-menu-logo-fontSize: 30px;
+
+$base-menu-info-fontSize: 15px;
+
+// 顶部导航的高度
+$base-tabbar-height: 50px;

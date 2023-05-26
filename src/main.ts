@@ -13,6 +13,7 @@ import 'virtual:svg-icons-register'
 import globalComponent from '@/components'
 // 引入模板的全局样式
 import '@/styles/index.scss'
+import 'animate.css'
 // 引入router
 import router from './router'
 // 引入pinia

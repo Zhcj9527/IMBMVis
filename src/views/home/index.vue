@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>一级路由Home</h1>
+    <h1>2级路由Home</h1>
   </div>
 </template>
 

@@ -9,11 +9,14 @@ import type { loginForm, loginResponseData } from '@/api/user/type'
 import type { UserState } from './types'
 // 引入token工具
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token'
+// 引入常量路由
+import { constantRoutes } from '@/router/routes'
 
 export const useUserStore = defineStore(Names.USER, {
   state: (): UserState => {
     return {
       token: GET_TOKEN(), // 用户唯一标识
+      menuRoutes: constantRoutes // 仓库存储菜单的路由
     }
   },
   getters: {},

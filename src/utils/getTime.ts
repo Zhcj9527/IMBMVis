@@ -4,7 +4,7 @@ export const getTime = () => {
   // 内置构造函数Date
   let hour = new Date().getHours()
   if (hour <= 9) {
-    message = "morning"
+    message = 'morning'
   } else if (hour <= 12) {
     message = 'noon'
   } else if (hour <= 18) {
