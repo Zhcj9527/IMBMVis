@@ -1,7 +1,7 @@
-import type { RouteRecordRaw } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router'
 
 // user仓库state返回数据的ts类型
 export interface UserState {
-  token: string | null,
+  token: string | null
   menuRoutes: RouteRecordRaw[]
 }

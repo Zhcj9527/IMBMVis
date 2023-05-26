@@ -16,7 +16,7 @@ export const useUserStore = defineStore(Names.USER, {
   state: (): UserState => {
     return {
       token: GET_TOKEN(), // 用户唯一标识
-      menuRoutes: constantRoutes // 仓库存储菜单的路由
+      menuRoutes: constantRoutes, // 仓库存储菜单的路由
     }
   },
   getters: {},

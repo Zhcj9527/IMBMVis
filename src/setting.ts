@@ -2,5 +2,5 @@
 export default {
   title: 'IMBMVis',
   logo: '/public/logo.jpg',
-  isLogoHidden: true,  // logo组件是否隐藏
+  isLogoHidden: true, // logo组件是否隐藏
 }

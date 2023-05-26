@@ -10,7 +10,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       title: '登录', //菜单标题,
       isHidden: true, // 是否隐藏
       icon: 'Promotion', // 前缀图标
-    }
+    },
   },
   {
     // 登陆成功以后展示数据的路由
@@ -44,7 +44,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           icon: 'Histogram', // 前缀图标
         }
       }, */
-    ]
+    ],
   },
   {
     path: '/screen',
@@ -73,8 +73,8 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: '用户管理',
           isHidden: false,
-          icon: 'User'
-        }
+          icon: 'User',
+        },
       },
       {
         path: '/acl/role',
@@ -83,8 +83,8 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: '角色管理',
           isHidden: false,
-          icon: 'ForkSpoon'
-        }
+          icon: 'ForkSpoon',
+        },
       },
       {
         path: '/acl/permission',
@@ -93,10 +93,10 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: '菜单管理',
           isHidden: false,
-          icon: 'HelpFilled'
-        }
-      }
-    ]
+          icon: 'HelpFilled',
+        },
+      },
+    ],
   },
   {
     path: '/product',
@@ -116,7 +116,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           title: '品牌管理',
           isHidden: false, // 是否隐藏
           icon: 'Present', // 前缀图标
-        }
+        },
       },
       {
         path: '/product/attr',
@@ -126,7 +126,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           title: '属性管理',
           isHidden: false, // 是否隐藏
           icon: 'Soccer', // 前缀图标
-        }
+        },
       },
       {
         path: '/product/spu',
@@ -136,7 +136,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           title: 'SPU管理',
           isHidden: false, // 是否隐藏
           icon: 'Calendar', // 前缀图标
-        }
+        },
       },
       {
         path: '/product/sku',
@@ -146,9 +146,9 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           title: 'SKU管理',
           isHidden: false, // 是否隐藏
           icon: 'Suitcase', // 前缀图标
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     // 404

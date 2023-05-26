@@ -1,17 +1,16 @@
 <template>
   <div class="logo" v-if="setting.isLogoHidden">
-    <img :src="setting.logo" alt="">
+    <img :src="setting.logo" alt="" />
     <p>{{ setting.title }}</p>
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 // 引入设置标题与logo配置文件
 import setting from '@/setting'
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .logo {
   display: flex;
   justify-content: space-around;
