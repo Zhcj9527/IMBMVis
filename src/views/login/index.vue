@@ -117,8 +117,8 @@ const login = async () => {
     // 用户登陆
     await userStore.userLogin(loginForm)
     // 编程式导航 路由跳转
-    if (route.query) {
-      $router.push(route.query.redirect)
+    if (route.query.redirect) {
+      $router.push(route.query.redirect as string)
     } else {
       $router.push('/')
     }

@@ -21,6 +21,12 @@ export default defineConfig(({ command }) => {
         localEnabled: command === 'serve',
       }),
     ],
+    server: {
+      hmr: true,
+      //vue3 vite配置热更新不用手动刷新
+      // Listening on all local IPs
+      // host: true,
+    },
     resolve: {
       alias: {
         '@': path.resolve('./src'), // 相对路径别名配置，使用 @ 代替 src

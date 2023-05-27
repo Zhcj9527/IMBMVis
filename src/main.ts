@@ -16,6 +16,8 @@ import '@/styles/index.scss'
 import 'animate.css'
 // 引入router
 import router from './router'
+// 路由鉴权
+import './permission.ts'
 // 引入pinia
 import pinia from './store'
 

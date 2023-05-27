@@ -1,4 +1,4 @@
 export interface SettingStore {
-  isExpand: boolean,
+  isExpand: boolean
   refresh: boolean
 }

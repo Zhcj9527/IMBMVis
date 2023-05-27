@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingStore } from '@/store/modules/setting';
-import { watch, ref, nextTick } from 'vue';
+import { useSettingStore } from '@/store/modules/setting'
+import { watch, ref, nextTick } from 'vue'
 
 let settingStore = useSettingStore()
 
@@ -18,14 +18,16 @@ let flag = ref<boolean>(true)
 // 监听仓库refresh值的变化，发生变化则是点击过refresh按钮
 // /* 点击过之后，需要销毁和重载main中的组件 */
 // watch 配合 nextTick 使用
-watch(() => settingStore.refresh, () => {
-  // 点击刷新按钮：组件销毁
-  flag.value = false
-  nextTick(() => {
-    flag.value = true
-  })
-})
-
+watch(
+  () => settingStore.refresh,
+  () => {
+    // 点击刷新按钮：组件销毁
+    flag.value = false
+    nextTick(() => {
+      flag.value = true
+    })
+  },
+)
 </script>
 
 <!-- 给组件个名字 -->

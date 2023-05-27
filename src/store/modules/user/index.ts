@@ -18,7 +18,7 @@ export const useUserStore = defineStore(Names.USER, {
       token: GET_TOKEN(), // 用户唯一标识
       menuRoutes: constantRoutes, // 仓库存储菜单的路由
       username: '',
-      avatar: ''
+      avatar: '',
     }
   },
   getters: {},
@@ -42,9 +42,13 @@ export const useUserStore = defineStore(Names.USER, {
     // 获取用户信息
     async userInfo() {
       let result = await reqUserInfo()
-      if (result.code === 200 ) {
+      if (result.code === 200) {
         this.username = result.data.checkUser.username
         this.avatar = result.data.checkUser.avatar
+
+        return 'ok'
+      } else {
+        return new Error('failure')
       }
     },
 
@@ -54,6 +58,6 @@ export const useUserStore = defineStore(Names.USER, {
       this.username = ''
       this.avatar = ''
       REMOVE_TOKEN()
-    }
+    },
   },
 })

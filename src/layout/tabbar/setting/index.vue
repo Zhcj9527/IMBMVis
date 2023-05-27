@@ -1,20 +1,30 @@
 <template>
-  <el-button icon="Refresh" size="small" circle @click="updateRefresh"></el-button>
-  <el-button icon="FullScreen" size="small" circle @click="fullScreen"></el-button>
+  <el-button
+    icon="Refresh"
+    size="small"
+    circle
+    @click="updateRefresh"
+  ></el-button>
+  <el-button
+    icon="FullScreen"
+    size="small"
+    circle
+    @click="fullScreen"
+  ></el-button>
   <el-button icon="Setting" size="small" circle></el-button>
   <!-- 头像 -->
   <img :src="setting.logo" />
   <!-- 下拉菜单 -->
   <el-dropdown>
     <span class="el-dropdown-link">
-      {{userStore.username}}
+      {{ userStore.username }}
       <el-icon class="el-icon--right">
         <arrow-down />
       </el-icon>
     </span>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item  @click="logout">logout</el-dropdown-item>
+        <el-dropdown-item @click="logout">logout</el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -22,9 +32,9 @@
 
 <script setup lang="ts">
 import setting from '../../../setting'
-import { useSettingStore } from '@/store/modules/setting';
-import { useUserStore } from '@/store/modules/user';
-import { useRouter, useRoute } from 'vue-router';
+import { useSettingStore } from '@/store/modules/setting'
+import { useUserStore } from '@/store/modules/user'
+import { useRouter, useRoute } from 'vue-router'
 
 let settingStore = useSettingStore()
 let userStore = useUserStore()
@@ -56,12 +66,10 @@ const logout = () => {
   router.push({
     path: '/login',
     query: {
-      redirect: route.path
-    }
+      redirect: route.path,
+    },
   })
 }
-
-
 </script>
 
 <!-- 给组件个名字 -->

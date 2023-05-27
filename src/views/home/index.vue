@@ -6,14 +6,10 @@
 
 <script setup lang="ts">
 // 挂载后加载用户信息
-import { onMounted } from 'vue';
-import { useUserStore } from '@/store/modules/user';
+import { useUserStore } from '@/store/modules/user'
 
 let userStore = useUserStore()
 
-onMounted(() => {
-  userStore.userInfo()
-})
 </script>
 
 <style scoped></style>
