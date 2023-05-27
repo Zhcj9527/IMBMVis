@@ -65,7 +65,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       isHidden: false, // 是否隐藏
       icon: 'Rank', // 前缀图标
     },
-    redirect:"/acl/user",
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
