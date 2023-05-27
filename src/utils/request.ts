@@ -1,6 +1,8 @@
 /* 进行axios二次封装：使用请求与响应拦截器 */
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+// 拿到用户token
+import { GET_TOKEN } from './token'
 // 第一步就是利用axios的create方，创建axios实例-->基础路径和超时时间
 let request = axios.create({
   // 基础路径
@@ -11,6 +13,10 @@ let request = axios.create({
 
 // 第二步：request实例添加请求与响应拦截器
 request.interceptors.request.use((config) => {
+  // 拿到用户的token
+  if (GET_TOKEN()) {
+    config.headers.token = GET_TOKEN()
+  }
   // 返回配置对象
   // config有headers属性请求头，经常给服务器端携带公共参数
   return config

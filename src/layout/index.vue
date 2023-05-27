@@ -51,7 +51,7 @@ import { useUserStore } from '@/store/modules/user'
 import { useSettingStore } from '@/store/modules/setting'
 
 let $route = useRoute()
-console.log($route.path)
+// console.log($route.path)
 let userStore = useUserStore()
 let settingStore = useSettingStore()
 </script>

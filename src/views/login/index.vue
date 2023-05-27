@@ -52,7 +52,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import type { loginForm } from '@/api/user/type'
 // 引入用户仓库
 import { useUserStore } from '@/store/modules/user'
@@ -61,6 +61,7 @@ import { getTime } from '@/utils/getTime'
 
 let userStore = useUserStore()
 let $router = useRouter()
+let route = useRoute()
 // 控制login加载效果
 let isLoading = ref<boolean>(false)
 // 表单元素
@@ -116,7 +117,11 @@ const login = async () => {
     // 用户登陆
     await userStore.userLogin(loginForm)
     // 编程式导航 路由跳转
-    $router.push('/')
+    if (route.query) {
+      $router.push(route.query.redirect)
+    } else {
+      $router.push('/')
+    }
     // 登陆成功的信息
     ElNotification({
       type: 'success',
