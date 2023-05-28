@@ -2,46 +2,103 @@
   <div>
     <el-card shadow="hover">
       <!-- 添加品牌按钮 -->
-      <el-button type="primary" size="default" icon="Plus" @click="addTrademark">
+      <el-button
+        type="primary"
+        size="default"
+        icon="Plus"
+        @click="addTrademark"
+      >
         添加品牌
       </el-button>
       <!-- 表格组件：用于展示已有数据平台数据 -->
       <!-- :data="" -->
       <el-table :data="trademarkAttr" border style="margin: 10px 0">
-        <el-table-column label="序号" width="80px" align="center" type="index"></el-table-column>
+        <el-table-column
+          label="序号"
+          width="80px"
+          align="center"
+          type="index"
+        ></el-table-column>
         <!--  el-table-column，默认用div展示, 可以通过插槽自定义 -->
         <el-table-column label="品牌名称" prop="tmName"></el-table-column>
         <el-table-column label="品牌logo">
           <template #="{ row, $index }">
-            <img :src="row.logoUrl" alt="loading..." style="width: 50px; height: 50px" />
+            <img
+              :src="row.logoUrl"
+              alt="loading..."
+              style="width: 50px; height: 50px"
+            />
           </template>
         </el-table-column>
         <el-table-column label="操作">
           <template #="{ row, $index }">
-            <el-button type="primary" icon="Edit" size="small" @click="updateTrademark(row)"></el-button>
-            <el-popconfirm :title="`Are you sure to delete ${row.tmName} ?`" width="250px" icon="Delete" @confirm="deleteTrademark(row)">
+            <el-button
+              type="primary"
+              icon="Edit"
+              size="small"
+              @click="updateTrademark(row)"
+            ></el-button>
+            <el-popconfirm
+              :title="`Are you sure to delete ${row.tmName} ?`"
+              width="250px"
+              icon="Delete"
+              @confirm="deleteTrademark(row)"
+            >
               <template #reference>
-                <el-button type="primary" icon="Delete" size="small"></el-button>
+                <el-button
+                  type="primary"
+                  icon="Delete"
+                  size="small"
+                ></el-button>
               </template>
             </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
       <!-- 分页器 -->
-      <el-pagination v-model:current-page="pageNo" v-model:page-size="limit" :page-sizes="[3, 5, 7, 9]" :background="true"
-        layout="prev, pager, next, jumper,->, sizes, total" :total="total" @current-change="getTrademark"
-        @size-change="handleSizeChange" />
+      <el-pagination
+        v-model:current-page="pageNo"
+        v-model:page-size="limit"
+        :page-sizes="[3, 5, 7, 9]"
+        :background="true"
+        layout="prev, pager, next, jumper,->, sizes, total"
+        :total="total"
+        @current-change="getTrademark"
+        @size-change="handleSizeChange"
+      />
     </el-card>
     <!-- 对话框组件：添加、删除修改已有品牌的业务使用 -->
-    <el-dialog v-model="dialogFormVisible" :title="trademarkForm.id ? '修改品牌' : '添加品牌'">
-      <el-form :model="trademarkForm" :rules="rules" ref="formRef" style="width: 80%;">
+    <el-dialog
+      v-model="dialogFormVisible"
+      :title="trademarkForm.id ? '修改品牌' : '添加品牌'"
+    >
+      <el-form
+        :model="trademarkForm"
+        :rules="rules"
+        ref="formRef"
+        style="width: 80%"
+      >
         <el-form-item label="Name" label-width="100px" prop="tmName">
-          <el-input v-model="trademarkForm.tmName" placeholder="请输入name" autocomplete="off" />
+          <el-input
+            v-model="trademarkForm.tmName"
+            placeholder="请输入name"
+            autocomplete="off"
+          />
         </el-form-item>
         <el-form-item label="Logo" label-width="100px" prop="logoUrl">
-          <el-upload v-model="trademarkForm.logoUrl" class="avatar-uploader" action="api/admin/product/fileUpload"
-            :show-file-list="false" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-            <img v-if="trademarkForm.logoUrl" :src="trademarkForm.logoUrl" class="avatar" />
+          <el-upload
+            v-model="trademarkForm.logoUrl"
+            class="avatar-uploader"
+            action="api/admin/product/fileUpload"
+            :show-file-list="false"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload"
+          >
+            <img
+              v-if="trademarkForm.logoUrl"
+              :src="trademarkForm.logoUrl"
+              class="avatar"
+            />
             <el-icon v-else class="avatar-uploader-icon">
               <Plus />
             </el-icon>
@@ -51,9 +108,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="cancel">Cancel</el-button>
-          <el-button type="primary" @click="confirm">
-            Confirm
-          </el-button>
+          <el-button type="primary" @click="confirm">Confirm</el-button>
         </span>
       </template>
     </el-dialog>
@@ -64,7 +119,11 @@
 import { ref, onMounted, reactive } from 'vue'
 import { ElMessage } from 'element-plus'
 // 引入api
-import { reqTrademark, reqAddOrUpdateTrademark,reqDeleteTrademark } from '@/api/product/trademark'
+import {
+  reqTrademark,
+  reqAddOrUpdateTrademark,
+  reqDeleteTrademark,
+} from '@/api/product/trademark'
 // trademark的ts类型
 import type {
   TradeMark,
@@ -84,11 +143,10 @@ let dialogFormVisible = ref<boolean>(false)
 // 收集新增品牌的name/logo
 let trademarkForm = reactive<TradeMark>({
   tmName: '',
-  logoUrl: ''
+  logoUrl: '',
 })
 // 获取el-form组件实例
 let formRef = ref<FormInstance>()
-
 
 // 获取已有品牌的接口封装为函数
 const getTrademark = async (pager = 1) => {
@@ -164,10 +222,16 @@ const confirm = async () => {
   }
 }
 // 上传图片之间触发的钩子
-const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile: UploadRawFile) => {
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (
+  rawFile: UploadRawFile,
+) => {
   // 约束图片：大小，类型
   // 上传文件格式 png|jpg|gif 4m
-  if (rawFile.type === 'image/png' || rawFile.type === 'image/jpeg' || rawFile.type === 'image/gif') {
+  if (
+    rawFile.type === 'image/png' ||
+    rawFile.type === 'image/jpeg' ||
+    rawFile.type === 'image/gif'
+  ) {
     if (rawFile.size / 1024 / 1024 < 4) {
       return true
     } else {
@@ -180,7 +244,10 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile: UploadRawFile)
   }
 }
 // 上传图片成功
-const handleAvatarSuccess: UploadProps['onSuccess'] = (response, uploadFile) => {
+const handleAvatarSuccess: UploadProps['onSuccess'] = (
+  response,
+  uploadFile,
+) => {
   // response为上传图片的数据，upLoadFile
   trademarkForm.logoUrl = response.data
   // 图片上传之后，清除掉对应图片校验结果, 对应字段的prop属性值
@@ -222,15 +289,15 @@ const rules = {
     {
       required: true,
       trigger: 'blur',
-      validator: validateTmName
-    }
+      validator: validateTmName,
+    },
   ],
   logoUrl: [
     {
       required: true,
-      validator: validateLogoUrl
-    }
-  ]
+      validator: validateLogoUrl,
+    },
+  ],
 }
 
 // 组件挂载完的钩子
