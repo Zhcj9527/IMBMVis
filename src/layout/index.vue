@@ -7,19 +7,29 @@
       <!-- 滚动条 -->
       <el-scrollbar class="scrollbar">
         <!-- 菜单 -->
-        <el-menu :default-active="$route.path" background-color="#001526" text-color="white"
-          :collapse="settingStore.isExpand">
+        <el-menu
+          :default-active="$route.path"
+          background-color="#001526"
+          text-color="white"
+          :collapse="settingStore.isExpand"
+        >
           <Menu :menuList="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout_tabbar" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_tabbar"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <!-- 顶部导航 -->
       <Tabbar></Tabbar>
     </div>
     <!-- 内容展示区域  -->
-    <div class="layout_main" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_main"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <Main></Main>
     </div>
   </div>

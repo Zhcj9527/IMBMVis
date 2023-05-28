@@ -53,14 +53,14 @@ import { ElNotification } from 'element-plus'
 import type { FormInstance, FormRules } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import type { loginForm } from '@/api/user/type'
+import type { LoginForm } from '@/api/user/type'
 // 引入用户仓库
 import { useUserStore } from '@/store/modules/user'
 // 引入time
 import { getTime } from '@/utils/getTime'
 
 let userStore = useUserStore()
-let $router = useRouter()
+let router = useRouter()
 let route = useRoute()
 // 控制login加载效果
 let isLoading = ref<boolean>(false)
@@ -68,9 +68,9 @@ let isLoading = ref<boolean>(false)
 let ruleFormRef = ref<FormInstance>()
 
 // 收集账号与密码
-const loginForm: loginForm = reactive({
+const loginForm: LoginForm = reactive({
   username: 'admin',
-  password: '111111',
+  password: 'atguigu123',
 })
 
 const validatorUserName = (rule: any, value: any, callback: any) => {
@@ -117,11 +117,8 @@ const login = async () => {
     // 用户登陆
     await userStore.userLogin(loginForm)
     // 编程式导航 路由跳转
-    if (route.query.redirect) {
-      $router.push(route.query.redirect as string)
-    } else {
-      $router.push('/')
-    }
+    let redirect: any = route.query.redirect
+    router.push({ path: redirect || '/' });
     // 登陆成功的信息
     ElNotification({
       type: 'success',

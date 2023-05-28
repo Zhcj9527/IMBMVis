@@ -58,11 +58,11 @@ const fullScreen = () => {
   }
 }
 // 退出登陆
-const logout = () => {
+const logout = async () => {
   // 1. 向服务器发请求
   // 2. 仓库数据要清空token username avatar
   // 3. 跳转login
-  userStore.userLogout()
+  await userStore.userLogout()
   router.push({
     path: '/login',
     query: {
