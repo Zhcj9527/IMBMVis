@@ -5,7 +5,11 @@ import { Names } from '@/store-namespaced'
 // 引入接口
 import { reqLogin, reqUserInfo, reqLogout } from '@/api/user'
 // 引入类型
-import type { LoginForm, LoginResponseData, UserInfoResponseData } from '@/api/user/type'
+import type {
+  LoginForm,
+  LoginResponseData,
+  UserInfoResponseData,
+} from '@/api/user/type'
 import type { UserState } from './types'
 // 引入token工具
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
@@ -28,7 +32,7 @@ export const useUserStore = defineStore(Names.USER, {
       let result: LoginResponseData = await reqLogin(data)
       // 成功--> token
       // 失败--> error.message
-      console.log(result)
+      // console.log(result)
       if (result.code === 200) {
         // this.token = result.data.token as string
         // token持久化
@@ -43,7 +47,7 @@ export const useUserStore = defineStore(Names.USER, {
     // 获取用户信息
     async userInfo() {
       let result: UserInfoResponseData = await reqUserInfo()
-      console.log(result);
+      // console.log(result)
       if (result.code === 200) {
         this.username = result.data.name
         this.avatar = result.data.avatar
@@ -57,7 +61,7 @@ export const useUserStore = defineStore(Names.USER, {
     // 退出登陆
     async userLogout() {
       let result: any = await reqLogout()
-      console.log(result);
+      // console.log(result)
       if (result.code === 200) {
         this.token = ''
         this.username = ''

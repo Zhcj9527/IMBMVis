@@ -118,7 +118,7 @@ const login = async () => {
     await userStore.userLogin(loginForm)
     // 编程式导航 路由跳转
     let redirect: any = route.query.redirect
-    router.push({ path: redirect || '/' });
+    router.push({ path: redirect || '/' })
     // 登陆成功的信息
     ElNotification({
       type: 'success',

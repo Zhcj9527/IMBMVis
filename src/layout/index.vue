@@ -114,7 +114,7 @@ export default {
 
     width: calc(100% - $base-menu-width);
     height: calc(100vh - $base-tabbar-height);
-    background-color: rgb(105, 47, 172);
+    // background-color: rgb(105, 47, 172);
 
     &.isExpand {
       left: $base-menu-min-width;
