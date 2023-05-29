@@ -37,31 +37,41 @@
           </el-form-item>
         </el-form>
         <el-button type="primary" size="default" icon="Plus" @click="addAttrValue"
-          :disabled="attrParams.attrName ? false : true">add
-          attrValue</el-button>
-        <el-button type="primary" size="default" @click="cancel">Cancel</el-button>
-        <el-table :data="attrParams.attrValueList" border style="margin: 10px 0;">
+          :disabled="attrParams.attrName ? false : true">
+          add attrValue
+        </el-button>
+        <el-button type="primary" size="default" @click="cancel">
+          Cancel
+        </el-button>
+        <el-table :data="attrParams.attrValueList" border style="margin: 10px 0">
           <el-table-column label="序号" width="80px" type="index" align="center"></el-table-column>
           <el-table-column label="attrValue">
             <template #="{ row, $index }">
-              <el-input v-if="row.flag" v-model="row.valueName" placeholder="Please input you valuename..."
-                @blur="toLook(row, $index)"></el-input>
-              <div v-else @click="toEdit(row)">{{ row.valueName }}</div>
+              <el-input :ref="((vc: any) => inputArr[$index] = vc)" v-if="row.flag" v-model="row.valueName"
+                placeholder="Please input you valuename..." @blur="toLook(row, $index)"></el-input>
+              <div v-else @click="toEdit(row, $index)">{{ row.valueName }}</div>
             </template>
           </el-table-column>
           <el-table-column label="Options">
-            <el-button type="primary" icon="Delete" size="small" @click=""></el-button>
+            <template #="{ row, $index }">
+              <el-button type="primary" icon="Delete" size="small"
+                @click="attrParams.attrValueList.splice($index, 1)"></el-button>
+            </template>
           </el-table-column>
         </el-table>
-        <el-button type="primary" size="default" :disabled="attrParams.attrName?false:true" @click="save">Save</el-button>
-        <el-button type="primary" size="default" @click="cancel">Cancel</el-button>
+        <el-button type="primary" size="default" :disabled="attrParams.attrName ? false : true" @click="save">
+          Save
+        </el-button>
+        <el-button type="primary" size="default" @click="cancel">
+          Cancel
+        </el-button>
       </template>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { watch, ref, reactive } from 'vue'
+import { watch, ref, reactive, nextTick } from 'vue'
 // api
 import { reqAttr, reqAddOrUpdateAttr } from '@/api/product/attr'
 // ts type
@@ -70,7 +80,6 @@ import type { AttrResponseData, Attr, AttrValue } from '@/api/product/attr/type'
 import { useCategoryStore } from '@/store/modules/category'
 import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
-import { fa } from 'element-plus/es/locale'
 let categoryStore = useCategoryStore()
 // 存储已有的attr数据
 let attrArr = ref<Attr[]>([])
@@ -81,11 +90,10 @@ let attrParams = reactive<Attr>({
   attrName: '',
   attrValueList: [],
   categoryId: '',
-  categoryLevel: 3
+  categoryLevel: 3,
 })
-// 定义编辑模式和查看模式的切换
-// let flag = ref<boolean>(true)
-
+// 存储el-input组件实例
+let inputArr = ref<any>([])
 
 // 监听三级分类的id
 watch(
@@ -118,7 +126,7 @@ const addAttr = () => {
     attrName: '',
     attrValueList: [],
     categoryId: categoryStore.c3Id, // // 收集三级分类的id
-    categoryLevel: 3
+    categoryLevel: 3,
   })
   // 切换添加、修改属性结构
   scene.value = false
@@ -137,7 +145,11 @@ const cancel = () => {
 const addAttrValue = () => {
   attrParams.attrValueList.push({
     valueName: '',
-    flag: true // 定义编辑模式和查看模式的切换
+    flag: true, // 定义编辑模式和查看模式的切换
+  })
+  // 获取最后的input框聚焦
+  nextTick(() => {
+    inputArr.value[attrParams.attrValueList.length - 1].focus()
   })
 }
 // 保存按钮的回调
@@ -153,7 +165,6 @@ const save = async () => {
   } else {
     ElMessage.error((attrParams.id ? 'UPDARE' : 'ADD') + ' FAILURE')
   }
-
 }
 // 属性值表单元素失去焦点, 变为div查看模式
 const toLook = (row: AttrValue, $index: number) => {
@@ -163,7 +174,7 @@ const toLook = (row: AttrValue, $index: number) => {
     attrParams.attrValueList.splice($index, 1)
     // 属性值不能为空
     ElMessage.error('属性值不能为空，请重新输入.....')
-    return;
+    return
   }
   // 非法情况判断2 重复
   let result = attrParams.attrValueList.find((item: AttrValue) => {
@@ -173,7 +184,7 @@ const toLook = (row: AttrValue, $index: number) => {
     }
   })
   if (result) {
-    ElMessage.error("属性值不能重复")
+    ElMessage.error('属性值不能重复')
     // 删除掉属性值重复的
     attrParams.attrValueList.splice($index, 1)
     return
@@ -181,12 +192,14 @@ const toLook = (row: AttrValue, $index: number) => {
   row.flag = false
 }
 // 点击div，变为编辑模式
-const toEdit = (row: AttrValue) => {
+const toEdit = (row: AttrValue, $index: number) => {
+  // 变为input
   row.flag = true
+  // 获取组件实例对象
+  nextTick(() => {
+    inputArr.value[$index].focus()
+  })
 }
-
-
-
 </script>
 
 <style scoped lang="scss"></style>

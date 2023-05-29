@@ -1,7 +1,10 @@
 <template>
   <div class="layout_container">
     <!-- 左侧菜单 -->
-    <div class="layout_slider" :class="{ isExpand: settingStore.isExpand ? true : false }">
+    <div
+      class="layout_slider"
+      :class="{ isExpand: settingStore.isExpand ? true : false }"
+    >
       <Logo></Logo>
       <!-- 展示菜单 -->
       <!-- 滚动条 -->
@@ -77,7 +80,7 @@ export default {
     color: white;
 
     &.isExpand {
-      width: $base-menu-min-width
+      width: $base-menu-min-width;
     }
     .scrollbar {
       width: 100%;
