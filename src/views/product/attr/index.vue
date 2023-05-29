@@ -22,8 +22,12 @@
           </el-table-column>
           <el-table-column label="操作" width="120px">
             <template #="{ row, $index }">
-              <el-button type="primary" size="small" icon="Edit" @click="updateAttr"></el-button>
-              <el-button type="primary" size="small" icon="Delete" @click=""></el-button>
+              <el-button type="primary" size="small" icon="Edit" @click="updateAttr(row)"></el-button>
+              <el-popconfirm :title="`Are you sure to delete ${row.attrName}?`" width="250px" @confirm="deleteAttr(row.id)">
+                <template #reference>
+                  <el-button type="primary" size="small" icon="Delete"></el-button>
+                </template>
+              </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
@@ -71,15 +75,16 @@
 </template>
 
 <script setup lang="ts">
-import { watch, ref, reactive, nextTick } from 'vue'
+import { watch, ref, reactive, nextTick, onBeforeUnmount } from 'vue'
 // api
-import { reqAttr, reqAddOrUpdateAttr } from '@/api/product/attr'
+import { reqAttr, reqAddOrUpdateAttr, reqRemoveAttr } from '@/api/product/attr'
 // ts type
 import type { AttrResponseData, Attr, AttrValue } from '@/api/product/attr/type'
 // 获取分类仓库
 import { useCategoryStore } from '@/store/modules/category'
 import { storeToRefs } from 'pinia'
 import { ElMessage } from 'element-plus'
+
 let categoryStore = useCategoryStore()
 // 存储已有的attr数据
 let attrArr = ref<Attr[]>([])
@@ -132,9 +137,12 @@ const addAttr = () => {
   scene.value = false
 }
 // table中修改属性
-const updateAttr = () => {
+const updateAttr = (row: Attr) => {
   // 切换添加、修改属性结构
   scene.value = false
+  // 将已有的attr属性给attrParams对象 
+  // 深拷贝
+  Object.assign(attrParams, JSON.parse(JSON.stringify(row)))
 }
 // 取消按钮
 const cancel = () => {
@@ -200,6 +208,25 @@ const toEdit = (row: AttrValue, $index: number) => {
     inputArr.value[$index].focus()
   })
 }
+// 删除某个属性的ffa
+const deleteAttr = async (attrId: number) => {
+  let result = await reqRemoveAttr(attrId)
+  console.log(result);
+  
+  if (result.code === 200) {
+    ElMessage.success('delete success')
+    // 在渲染一下页面
+    getAttr()
+  } else {
+    ElMessage.error('delete failure')
+  }
+}
+
+// 路由组件销毁的时候，把仓库的相关数据清空
+onBeforeUnmount(() => {
+  categoryStore.$reset()
+})
+
 </script>
 
 <style scoped lang="scss"></style>
