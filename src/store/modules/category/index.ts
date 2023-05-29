@@ -20,7 +20,7 @@ export const useCategoryStore = defineStore(Names.CATEGORY, {
       c2Id: '',
       // 三级分类的数据和id
       c3Arr: [],
-      c3Id: ''
+      c3Id: '',
     }
   },
   getters: {},
@@ -46,6 +46,6 @@ export const useCategoryStore = defineStore(Names.CATEGORY, {
       if (result.code === 200) {
         this.c3Arr = result.data
       }
-    }
+    },
   },
 })

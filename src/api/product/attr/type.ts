@@ -1,4 +1,4 @@
-// 分类ts类型. 
+// 分类ts类型.
 // 共有的返回数据
 interface ResponseData {
   code: number
@@ -20,15 +20,16 @@ export interface CategoryResponseData extends ResponseData {
 // 属性、属性值的ts类型
 // 属性值的ts
 export interface AttrValue {
-  id: number
+  id?: number
   valueName: string
-  attrId: number
+  attrId?: number
+  flag?: boolean
 }
 // 属性的ts
 export interface Attr {
-  id: number
+  id?: number
   attrName: string
-  categoryId: number
+  categoryId: number | string
   categoryLevel: number
   attrValueList: AttrValue[]
 }
@@ -36,4 +37,3 @@ export interface Attr {
 export interface AttrResponseData extends ResponseData {
   data: Attr[]
 }
-
