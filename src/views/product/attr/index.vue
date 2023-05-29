@@ -23,7 +23,8 @@
           <el-table-column label="操作" width="120px">
             <template #="{ row, $index }">
               <el-button type="primary" size="small" icon="Edit" @click="updateAttr(row)"></el-button>
-              <el-popconfirm :title="`Are you sure to delete ${row.attrName}?`" width="250px" @confirm="deleteAttr(row.id)">
+              <el-popconfirm :title="`Are you sure to delete ${row.attrName}?`" width="250px"
+                @confirm="deleteAttr(row.id)">
                 <template #reference>
                   <el-button type="primary" size="small" icon="Delete"></el-button>
                 </template>
@@ -140,7 +141,7 @@ const addAttr = () => {
 const updateAttr = (row: Attr) => {
   // 切换添加、修改属性结构
   scene.value = false
-  // 将已有的attr属性给attrParams对象 
+  // 将已有的attr属性给attrParams对象
   // 深拷贝
   Object.assign(attrParams, JSON.parse(JSON.stringify(row)))
 }
@@ -211,8 +212,8 @@ const toEdit = (row: AttrValue, $index: number) => {
 // 删除某个属性的ffa
 const deleteAttr = async (attrId: number) => {
   let result = await reqRemoveAttr(attrId)
-  console.log(result);
-  
+  console.log(result)
+
   if (result.code === 200) {
     ElMessage.success('delete success')
     // 在渲染一下页面
@@ -226,7 +227,6 @@ const deleteAttr = async (attrId: number) => {
 onBeforeUnmount(() => {
   categoryStore.$reset()
 })
-
 </script>
 
 <style scoped lang="scss"></style>

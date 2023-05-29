@@ -15,7 +15,7 @@ enum API {
   // 添加、修改已有属性
   ADDORUPDATEATTR_URL = '/admin/product/saveAttrInfo',
   // 删除属性
-  DALETEATTR_URL = '/admin/product/deleteAttr/'
+  DALETEATTR_URL = '/admin/product/deleteAttr/',
 }
 
 // 一级分类
@@ -39,8 +39,5 @@ export const reqAttr = (
 export const reqAddOrUpdateAttr = (data: Attr) =>
   request.post<any, any>(API.ADDORUPDATEATTR_URL, data)
 // 删除属性   attrId
-export const reqRemoveAttr = (attrId: number) => request.delete<any, any>(API.DALETEATTR_URL + attrId)
-
-
-
-
+export const reqRemoveAttr = (attrId: number) =>
+  request.delete<any, any>(API.DALETEATTR_URL + attrId)
