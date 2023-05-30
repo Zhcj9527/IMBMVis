@@ -15,7 +15,7 @@
           <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
           <el-table-column label="操作">
             <template #="{ row, $index }">
-              <el-button type="primary" size="small" icon="Plus" title="add spu" @click=""></el-button>
+              <el-button type="primary" size="small" icon="Plus" title="add sku" @click="addSku"></el-button>
               <el-button type="primary" size="small" icon="Edit" title="edit spu" @click="updateSpu(row)"></el-button>
               <el-button type="primary" size="small" icon="View" title="view sku" @click=""></el-button>
               <el-button type="primary" size="small" icon="Delete" title="delete spu" @click=""></el-button>
@@ -30,7 +30,7 @@
       <!-- add|update SPU -->
       <SpuForm ref="spu" v-show="switchScene === 1" @changeScene="changeScene"></SpuForm>
       <!-- add SKU -->
-      <SkuForm v-show="switchScene === 2"></SkuForm>
+      <SkuForm v-show="switchScene === 2" @changeScene="changeScene"></SkuForm>
     </el-card>
   </div>
 </template>
@@ -107,6 +107,11 @@ const updateSpu = (row: SpuData) => {
   switchScene.value = 1
   // 调用子组件的方法，以获取完整的spu的数据
   spu.value.initHasSpuData(row)
+}
+// 添加sku
+const addSku = () => {
+  // 点击添加sku，切换场景为2
+  switchScene.value = 2
 }
 </script>
 

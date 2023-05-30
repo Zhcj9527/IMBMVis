@@ -49,7 +49,6 @@ export const reqSpuSaleAttr = (spuId: number) =>
 export const reqAllSaleAttr = () =>
   request.get<any, AllSaleAttrResponseData>(API.ALLSALEATTR)
 
-
 // 添加SPU|更新SPU  data是一个已有的spu对象
 export const reqAddOrUpdateSpu = (data: SpuData) => {
   if (data.id) {
@@ -60,7 +59,3 @@ export const reqAddOrUpdateSpu = (data: SpuData) => {
     return request.post<any, any>(API.ADDSPU_URL, data)
   }
 }
-
-
-
-

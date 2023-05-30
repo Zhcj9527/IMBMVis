@@ -45,8 +45,8 @@ export interface SpuImg {
   spuId?: number
   imgName?: string
   imgUrl?: string
-  name?:string
-  url?:string
+  name?: string
+  url?: string
 }
 // 图片返回数据类型
 export interface SpuImgResponseData extends ResponseData {
@@ -86,5 +86,3 @@ export interface AllSaleAttr {
 export interface AllSaleAttrResponseData extends ResponseData {
   data: AllSaleAttr[]
 }
-
-

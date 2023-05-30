@@ -30,8 +30,11 @@
       </el-form-item>
       <el-form-item label="SPU销售属性">
         <!-- v-model="" value-key="" placeholder="" clearable filterable @change="" -->
-        <el-select v-model="saleAttrIdAndName"
-          :placeholder="unSelectSaleAttr.length ? `还未选择${unSelectSaleAttr.length}个` : '无'">
+        <el-select v-model="saleAttrIdAndName" :placeholder="
+          unSelectSaleAttr.length
+            ? `还未选择${unSelectSaleAttr.length}个`
+            : '无'
+        ">
           <!-- v-for="item in options" :key="item.value" :label="item.label" :value="item.value" -->
           <el-option :value="`${item.id}:${item.name}`" v-for="(item, index) in unSelectSaleAttr" :key="item.id"
             :label="item.name"></el-option>
@@ -50,12 +53,12 @@
               <!-- v-for="tag in dynamicTags" :key="tag" class="mx-1" closable :disable-transitions="false"
                 @close="handleClose(tag)" -->
               <el-tag v-for="(item, index) in row.spuSaleAttrValueList" :key="item.id" :closable="true"
-                style="margin: 0 5px;" @close="row.spuSaleAttrValueList.splice($index, 1)">
+                style="margin: 0 5px" @close="row.spuSaleAttrValueList.splice($index, 1)">
                 {{ item.saleAttrValueName }}
               </el-tag>
-              <el-input @blur="toLook(row)" v-model="row.saleAttrValue" v-if="row.flag == true" style="width: 80px;"
+              <el-input @blur="toLook(row)" v-model="row.saleAttrValue" v-if="row.flag == true" style="width: 80px"
                 size="small" />
-              <el-button v-else style="width: 80px;" icon="Plus" size="small" @click="showInput(row)"></el-button>
+              <el-button v-else style="width: 80px" icon="Plus" size="small" @click="showInput(row)"></el-button>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="80px">
@@ -66,8 +69,9 @@
         </el-table>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" :disabled="unSelectSaleAttr.length !== 3 ? false : true" size="default"
-          @click="save">save</el-button>
+        <el-button type="primary" :disabled="unSelectSaleAttr.length !== 3 ? false : true" size="default" @click="save">
+          save
+        </el-button>
         <el-button type="primary" size="default" @click="cancel">
           cancel
         </el-button>
@@ -84,7 +88,7 @@ import {
   reqSpuImageList,
   reqSpuSaleAttr,
   reqAllSaleAttr,
-  reqAddOrUpdateSpu
+  reqAddOrUpdateSpu,
 } from '@/api/product/spu'
 // ts type
 import type {
@@ -99,10 +103,11 @@ import type {
   TradeMark,
   SpuImg,
 } from '@/api/product/spu/type'
-import { ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus'
 
+type Obj = { flag: number; params: string }
 const emit = defineEmits<{
-  (event: 'changeScene', obj: { flag: number, params: string }): void
+  (event: 'changeScene', obj: Obj): void
 }>()
 
 // 储存已有的spu的品牌
@@ -120,7 +125,7 @@ let spuParams = ref<SpuData>({
   category3Id: '', // 三级分类的id
   tmId: '', // 品牌的id
   spuSaleAttrList: [], // 销售属性
-  spuImageList: [] // 照片墙
+  spuImageList: [], // 照片墙
 })
 // 控制对话框的显示与隐藏
 let dialogVisible = ref<boolean>(false)
@@ -131,7 +136,7 @@ let saleAttrIdAndName = ref<string>('')
 
 // 点击取消按钮。切换场景为0
 const cancel = () => {
-  emit('changeScene', {flag:0,params:'update'})
+  emit('changeScene', { flag: 0, params: 'update' })
 }
 // 获取完整的spu数据
 const initHasSpuData = async (spu: SpuData) => {
@@ -149,10 +154,10 @@ const initHasSpuData = async (spu: SpuData) => {
 
   // 储存数据
   allTradeMark.value = tmResult.data
-  imgList.value = imgResult.data.map(item => {
+  imgList.value = imgResult.data.map((item) => {
     return {
       name: item.imgName,
-      url: item.imgUrl
+      url: item.imgUrl,
     }
   })
   saleAttr.value = saleValRes.data
@@ -167,8 +172,8 @@ const handlePictureCardPreview = (file: any) => {
 }
 // 计算出SPU还未有的属性
 let unSelectSaleAttr = computed(() => {
-  return allSaleAttr.value.filter(item => {
-    return saleAttr.value.every(d => {
+  return allSaleAttr.value.filter((item) => {
+    return saleAttr.value.every((d) => {
       return d.saleAttrName !== item.name
     })
   })
@@ -183,7 +188,7 @@ const addSaleAttr = () => {
   let newSaleAttr: SaleAttr = {
     baseSaleAttrId,
     saleAttrName,
-    spuSaleAttrValueList: []
+    spuSaleAttrValueList: [],
   }
   // 追加到数据中
   saleAttr.value.push(newSaleAttr)
@@ -204,11 +209,11 @@ const toLook = (row: SaleAttr) => {
   // 追加新的属性值
   let newSaleAttrValue: SaleAttrValue = {
     baseSaleAttrId,
-    saleAttrValueName: saleAttrValue!
+    saleAttrValueName: saleAttrValue!,
   }
   // 非法判断  非空
   if (saleAttrValue?.trim() === '') {
-    ElMessage.error("属性值不能为空")
+    ElMessage.error('属性值不能为空')
     return
   }
   // 非法判断  不能重复
@@ -231,7 +236,7 @@ const save = async () => {
   spuParams.value.spuImageList = imgList.value.map((item: any) => {
     return {
       imgName: item.name,
-      imgUrl: (item.response && item.response.data) || item.url
+      imgUrl: (item.response && item.response.data) || item.url,
     }
   })
   // 销售属性的数据
@@ -240,9 +245,14 @@ const save = async () => {
   //发请求
   let result = await reqAddOrUpdateSpu(spuParams.value)
   if (result.code === 200) {
-    ElMessage.success(`${spuParams.value.id}` ? 'UPDATE SUCCESS' : 'ADD SUCCESS')
+    ElMessage.success(
+      `${spuParams.value.id}` ? 'UPDATE SUCCESS' : 'ADD SUCCESS',
+    )
     // 切换场景
-    emit('changeScene', { flag: 0, params: spuParams.value.id ? 'update' : 'add' })
+    emit('changeScene', {
+      flag: 0,
+      params: spuParams.value.id ? 'update' : 'add',
+    })
   } else {
     ElMessage.success(`${spuParams.value.id}` ? 'UPDATE error' : 'ADD error')
   }
@@ -256,7 +266,7 @@ const initAddSpu = async (category3Id: number | string) => {
     category3Id: '', // 三级分类的id
     tmId: '', // 品牌的id
     spuSaleAttrList: [], // 销售属性
-    spuImageList: [] // 照片墙
+    spuImageList: [], // 照片墙
   })
   // 照片墙
   imgList.value = []
@@ -273,13 +283,12 @@ const initAddSpu = async (category3Id: number | string) => {
   //存储数据
   allTradeMark.value = tmResult.data
   allSaleAttr.value = hasSaleValRes.data
-
 }
 
 // 暴露出去
 defineExpose({
   initHasSpuData,
-  initAddSpu
+  initAddSpu,
 })
 </script>
 
