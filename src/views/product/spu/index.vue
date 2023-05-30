@@ -57,9 +57,9 @@ let pageSize = ref<number>(3)
 let records = ref<SpuData[]>([])
 let total = ref<number>(0)
 // 场景切换 0: 已有的SPU，1：添加|修改SPU，2：添加SKU
-let switchScene = ref<number>(1)
+let switchScene = ref<number>(0)
 // 获取spu组件
-let spu = ref<any>() 
+let spu = ref<any>()
 
 // 监听三级分类id
 watch(
@@ -91,11 +91,15 @@ const handleSizeChange = () => {
 const addSpu = () => {
   // 1：添加|修改SPU
   switchScene.value = 1
+  // 点击添加按钮，调用初始化
+  spu.value.initAddSpu(categoryStore.c3Id)
 }
 // 子组件SpuForm的自定义事件：通知切换场景为0
-const changeScene = (num: number) => {
+const changeScene = ({ flag, params }: any) => {
   // 子组件传过来的值，场景切换为0，展示spu信息
-  switchScene.value = num
+  switchScene.value = flag
+  // 再次获取全部已有的spu数据
+  getSpu(params === 'update' ? pageNo.value : 1)
 }
 // 修改Spu
 const updateSpu = (row: SpuData) => {

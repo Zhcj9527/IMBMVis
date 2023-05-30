@@ -6,17 +6,17 @@ interface ResponseData {
   ok: boolean
 }
 
-// SPU数据的ts类型
+// 已有SPU数据的ts类型
 export interface SpuData {
   id?: number
   spuName: string
   description: string
   category3Id: string | number
-  tmId: number
-  spuSaleAttrList: null
-  spuImageList: null
+  tmId: number | string
+  spuSaleAttrList: null | SaleAttr[]
+  spuImageList: null | SpuImg[]
 }
-// 获取spu返回的数据的ts类型
+// 获取已有spu返回的数据的ts类型
 export interface SpuResponseData extends ResponseData {
   data: {
     records: SpuData[]
@@ -41,10 +41,12 @@ export interface AllTrademarkResponseData extends ResponseData {
 
 // 图片
 export interface SpuImg {
-  id: number
-  spuId: number
-  imgName: string
-  imgUrl: string
+  id?: number
+  spuId?: number
+  imgName?: string
+  imgUrl?: string
+  name?:string
+  url?:string
 }
 // 图片返回数据类型
 export interface SpuImgResponseData extends ResponseData {
@@ -55,19 +57,21 @@ export interface SpuImgResponseData extends ResponseData {
 // 已有的销售属性的属性值ts
 export interface SaleAttrValue {
   id?: number
-  spuId: number
-  baseSaleAttrId: number
-  saleAttrValueName: string
-  saleAttrName: string
-  isChecked: null
+  spuId?: number
+  baseSaleAttrId: number | string
+  saleAttrValueName: string | number
+  saleAttrName?: string
+  isChecked?: null
 }
 // 销售属性ts
 export interface SaleAttr {
   id?: number
-  spuId: number
-  baseSaleAttrId: number
+  spuId?: number
+  baseSaleAttrId: number | string
   saleAttrName: string
   spuSaleAttrValueList: SaleAttrValue[]
+  flag?: boolean
+  saleAttrValue?: string
 }
 // 销售属性返回数据ts
 export interface SaleAttrResponseData extends ResponseData {
@@ -82,3 +86,5 @@ export interface AllSaleAttr {
 export interface AllSaleAttrResponseData extends ResponseData {
   data: AllSaleAttr[]
 }
+
+
