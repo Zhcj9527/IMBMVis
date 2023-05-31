@@ -38,15 +38,12 @@
       <!-- dialog对话框 -->
       <el-dialog v-model="dialogShow" title="SKU列表">
         <el-table :data="skuArr" border stripe>
-          <el-table-column label="sku名称" prop="skuName">
-          </el-table-column>
-          <el-table-column label="sku价格" prop="price">
-          </el-table-column>
-          <el-table-column label="sku重量" prop="weight">
-          </el-table-column>
+          <el-table-column label="sku名称" prop="skuName"></el-table-column>
+          <el-table-column label="sku价格" prop="price"></el-table-column>
+          <el-table-column label="sku重量" prop="weight"></el-table-column>
           <el-table-column label="sku图片">
             <template #="{ row, $index }">
-              <img :src="row.skuDefaultImg" width="40px" height="40px">
+              <img :src="row.skuDefaultImg" width="40px" height="40px" />
             </template>
           </el-table-column>
         </el-table>
@@ -56,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch,onBeforeUnmount } from 'vue'
+import { ref, watch, onBeforeUnmount } from 'vue'
 // spu，sku组件
 import SpuForm from './SpuForm/index.vue'
 import SkuForm from './SkuForm/index.vue'
@@ -65,7 +62,12 @@ import { useCategoryStore } from '@/store/modules/category'
 // api
 import { reqHasSpu, reqSkuList, reqRemoveSpu } from '@/api/product/spu'
 // ts type
-import type { SpuResponseData, SpuData, SkuResponseData, SkuData } from '@/api/product/spu/type'
+import type {
+  SpuResponseData,
+  SpuData,
+  SkuResponseData,
+  SkuData,
+} from '@/api/product/spu/type'
 import { ElMessage } from 'element-plus'
 
 let categoryStore = useCategoryStore()
@@ -152,14 +154,14 @@ const findSku = async (row: SpuData) => {
   }
 }
 // 删除spu
-const deleteSpu = async (row: SpuData)=> {
+const deleteSpu = async (row: SpuData) => {
   let result = await reqRemoveSpu(row.id!)
   if (result.code === 200) {
-    ElMessage.success("删除成功")
+    ElMessage.success('删除成功')
     // 再拿一次数据
     getSpu(pageNo.value)
   } else {
-    ElMessage.error("删除失败")
+    ElMessage.error('删除失败')
   }
 }
 // 路由组件销毁前，清除分类的数据

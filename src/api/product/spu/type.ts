@@ -72,7 +72,7 @@ export interface SaleAttr {
   spuSaleAttrValueList: SaleAttrValue[]
   flag?: boolean
   saleAttrValue?: string
-  saleIdAndValueId?:string
+  saleIdAndValueId?: string
 }
 // 销售属性返回数据ts
 export interface SaleAttrResponseData extends ResponseData {

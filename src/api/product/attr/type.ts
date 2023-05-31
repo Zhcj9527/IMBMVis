@@ -32,7 +32,7 @@ export interface Attr {
   categoryId: number | string
   categoryLevel: number
   attrValueList: AttrValue[]
-  attrIdAndValueId?:string
+  attrIdAndValueId?: string
 }
 // 属性/属性值返回数据类型
 export interface AttrResponseData extends ResponseData {

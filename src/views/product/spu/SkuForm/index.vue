@@ -152,27 +152,30 @@ const save = async () => {
   // 平台属性
   skuParams.skuAttrValueList = attrArr.value.reduce((prev: any, cur: Attr) => {
     if (cur.attrIdAndValueId) {
-      let [attrId, valueId] = cur.attrIdAndValueId.split(":")
+      let [attrId, valueId] = cur.attrIdAndValueId.split(':')
       prev.push({ attrId, valueId })
     }
     return prev
   }, [])
   // 销售属性
-  skuParams.skuSaleAttrValueList = saleArr.value.reduce((prev: any, cur: SaleAttr ) => {
-    if (cur.saleIdAndValueId) {
-      let [saleAttrId, saleAttrValueId] = cur.saleIdAndValueId.split(":")
-      prev.push({saleAttrId, saleAttrValueId})
-    }
-    return prev
-  }, [])
+  skuParams.skuSaleAttrValueList = saleArr.value.reduce(
+    (prev: any, cur: SaleAttr) => {
+      if (cur.saleIdAndValueId) {
+        let [saleAttrId, saleAttrValueId] = cur.saleIdAndValueId.split(':')
+        prev.push({ saleAttrId, saleAttrValueId })
+      }
+      return prev
+    },
+    [],
+  )
   // 发请求
   let result: any = await reqAddSku(skuParams)
   // console.log(result);
   if (result.code === 200) {
-    ElMessage.success("添加sku成功")
-    emit('changeScene', {flag:0})
+    ElMessage.success('添加sku成功')
+    emit('changeScene', { flag: 0 })
   } else {
-    ElMessage.error("添加sku失败")
+    ElMessage.error('添加sku失败')
   }
 }
 

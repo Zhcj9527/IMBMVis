@@ -72,7 +72,9 @@ export const reqAddOrUpdateSpu = (data: SpuData) => {
 export const reqAddSku = (data: SkuData) =>
   request.post<any, any>(API.ADDSKU_URL, data)
 // 查看sku {spuId}
-export const reqSkuList = (spuId: number | string) => request.get<any, SkuResponseData>(API.SKUINFO_URL + spuId)
+export const reqSkuList = (spuId: number | string) =>
+  request.get<any, SkuResponseData>(API.SKUINFO_URL + spuId)
 
 // 删除spu
-export const reqRemoveSpu = (spuId: number | string) => request.delete<any, any>(API.DELETESKU_URL + spuId)
+export const reqRemoveSpu = (spuId: number | string) =>
+  request.delete<any, any>(API.DELETESKU_URL + spuId)

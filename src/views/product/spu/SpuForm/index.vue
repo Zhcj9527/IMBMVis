@@ -3,23 +3,38 @@
     <!-- :model="form" ref="form" :rules="rules" label-width="80px" :inline="false" size="normal" -->
     <el-form label-width="120px">
       <el-form-item label="SPU名称">
-        <el-input placeholder="请输入SPU名称..." v-model="spuParams.spuName"></el-input>
+        <el-input
+          placeholder="请输入SPU名称..."
+          v-model="spuParams.spuName"
+        ></el-input>
       </el-form-item>
       <el-form-item label="SPU品牌">
         <!-- v-model="" value-key="" placeholder="" clearable filterable @change="" -->
         <el-select v-model="spuParams.tmId" placeholder="请选择...">
           <!-- v-for="item in options" :key="item.value" :label="item.label" :value="item.value" -->
-          <el-option v-for="(item, index) in allTradeMark" :key="item.id" :label="item.tmName"
-            :value="item.id"></el-option>
+          <el-option
+            v-for="(item, index) in allTradeMark"
+            :key="item.id"
+            :label="item.tmName"
+            :value="item.id"
+          ></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="SPU描述">
-        <el-input v-model="spuParams.description" placeholder="请输入描述..." type="textarea"></el-input>
+        <el-input
+          v-model="spuParams.description"
+          placeholder="请输入描述..."
+          type="textarea"
+        ></el-input>
       </el-form-item>
       <el-form-item label="SPU照片墙">
         <!-- list-type: 文件怎么展示 :on-preview="handlePictureCardPreview" :on-remove="handleRemove" -->
-        <el-upload v-model="imgList" action="/api/admin/product/fileUpload" list-type="picture-card"
-          :on-preview="handlePictureCardPreview">
+        <el-upload
+          v-model="imgList"
+          action="/api/admin/product/fileUpload"
+          list-type="picture-card"
+          :on-preview="handlePictureCardPreview"
+        >
           <el-icon>
             <Plus />
           </el-icon>
@@ -30,46 +45,93 @@
       </el-form-item>
       <el-form-item label="SPU销售属性">
         <!-- v-model="" value-key="" placeholder="" clearable filterable @change="" -->
-        <el-select v-model="saleAttrIdAndName" :placeholder="
-          unSelectSaleAttr.length
-            ? `还未选择${unSelectSaleAttr.length}个`
-            : '无'
-        ">
+        <el-select
+          v-model="saleAttrIdAndName"
+          :placeholder="
+            unSelectSaleAttr.length
+              ? `还未选择${unSelectSaleAttr.length}个`
+              : '无'
+          "
+        >
           <!-- v-for="item in options" :key="item.value" :label="item.label" :value="item.value" -->
-          <el-option :value="`${item.id}:${item.name}`" v-for="(item, index) in unSelectSaleAttr" :key="item.id"
-            :label="item.name"></el-option>
+          <el-option
+            :value="`${item.id}:${item.name}`"
+            v-for="(item, index) in unSelectSaleAttr"
+            :key="item.id"
+            :label="item.name"
+          ></el-option>
         </el-select>
-        <el-button :disabled="saleAttrIdAndName ? false : true" style="margin-left: 10px" type="primary" size="default"
-          icon="Plus" @click="addSaleAttr">
+        <el-button
+          :disabled="saleAttrIdAndName ? false : true"
+          style="margin-left: 10px"
+          type="primary"
+          size="default"
+          icon="Plus"
+          @click="addSaleAttr"
+        >
           添加属性
         </el-button>
         <!-- table展示销售属性与属性值的地方  -->
         <el-table :data="saleAttr" border stripe style="margin-top: 10px">
           <!-- v-for="col in columns" :prop="col.id" :key="col.id" :label="col.label" :width="col.width" -->
-          <el-table-column type="index" label="序号" width="80px"></el-table-column>
-          <el-table-column label="属性名" prop="saleAttrName" width="80px"></el-table-column>
+          <el-table-column
+            type="index"
+            label="序号"
+            width="80px"
+          ></el-table-column>
+          <el-table-column
+            label="属性名"
+            prop="saleAttrName"
+            width="80px"
+          ></el-table-column>
           <el-table-column label="销售属性值">
             <template #="{ row, $index }">
               <!-- v-for="tag in dynamicTags" :key="tag" class="mx-1" closable :disable-transitions="false"
                 @close="handleClose(tag)" -->
-              <el-tag v-for="(item, $index) in row.spuSaleAttrValueList" :key="item.id" :closable="true"
-                style="margin: 0 5px" @close="row.spuSaleAttrValueList.splice($index, 1)">
+              <el-tag
+                v-for="(item, $index) in row.spuSaleAttrValueList"
+                :key="item.id"
+                :closable="true"
+                style="margin: 0 5px"
+                @close="row.spuSaleAttrValueList.splice($index, 1)"
+              >
                 {{ item.saleAttrValueName }}
               </el-tag>
-              <el-input @blur="toLook(row)" v-model="row.saleAttrValue" v-if="row.flag == true" style="width: 80px"
-                size="small" />
-              <el-button v-else style="width: 80px" icon="Plus" size="small" @click="showInput(row)"></el-button>
+              <el-input
+                @blur="toLook(row)"
+                v-model="row.saleAttrValue"
+                v-if="row.flag == true"
+                style="width: 80px"
+                size="small"
+              />
+              <el-button
+                v-else
+                style="width: 80px"
+                icon="Plus"
+                size="small"
+                @click="showInput(row)"
+              ></el-button>
             </template>
           </el-table-column>
           <el-table-column label="操作" width="80px">
             <template #="{ row, $index }">
-              <el-button type="primary" size="small" icon="Delete" @click="saleAttr.splice($index, 1)"></el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Delete"
+                @click="saleAttr.splice($index, 1)"
+              ></el-button>
             </template>
           </el-table-column>
         </el-table>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" :disabled="unSelectSaleAttr.length !== 3 ? false : true" size="default" @click="save">
+        <el-button
+          type="primary"
+          :disabled="unSelectSaleAttr.length !== 3 ? false : true"
+          size="default"
+          @click="save"
+        >
           save
         </el-button>
         <el-button type="primary" size="default" @click="cancel">
