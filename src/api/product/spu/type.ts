@@ -72,6 +72,7 @@ export interface SaleAttr {
   spuSaleAttrValueList: SaleAttrValue[]
   flag?: boolean
   saleAttrValue?: string
+  saleIdAndValueId?:string
 }
 // 销售属性返回数据ts
 export interface SaleAttrResponseData extends ResponseData {
@@ -107,4 +108,9 @@ export interface SkuData {
   skuAttrValueList: SkuAttrValue[]
   skuSaleAttrValueList: SkuSaleAttrValue[]
   skuDefaultImg: string
+}
+
+// 获取sku返回数据ts类型
+export interface SkuResponseData extends ResponseData {
+  data: SkuData[]
 }

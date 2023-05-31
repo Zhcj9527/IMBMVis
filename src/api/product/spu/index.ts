@@ -2,6 +2,7 @@
 import request from '@/utils/request'
 // ts type
 import type {
+  SkuResponseData,
   SkuData,
   SpuData,
   SpuResponseData,
@@ -27,7 +28,11 @@ enum API {
   // 更新SPU
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
   // 追加一个新的sku
-  ADDSKU_URL = '/admin/product/updateSkuInfo'
+  ADDSKU_URL = '/admin/product/updateSkuInfo',
+  // 查看某个spu下的全部售卖商品
+  SKUINFO_URL = '/admin/product/findBySpuId/',
+  // 删除spu
+  DELETESKU_URL = '/admin/product/deleteSpu/',
 }
 
 // 获取某个三级分类的spu数据    {page}/{limit}
@@ -64,4 +69,10 @@ export const reqAddOrUpdateSpu = (data: SpuData) => {
 }
 
 // 添加sku
-export const reqAddSku = (data: SkuData) => request.post<any, any>(API.ADDSKU_URL, data)
+export const reqAddSku = (data: SkuData) =>
+  request.post<any, any>(API.ADDSKU_URL, data)
+// 查看sku {spuId}
+export const reqSkuList = (spuId: number | string) => request.get<any, SkuResponseData>(API.SKUINFO_URL + spuId)
+
+// 删除spu
+export const reqRemoveSpu = (spuId: number | string) => request.delete<any, any>(API.DELETESKU_URL + spuId)
