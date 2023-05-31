@@ -2,6 +2,7 @@
 import request from '@/utils/request'
 // ts type
 import type {
+  SkuData,
   SpuData,
   SpuResponseData,
   AllTrademarkResponseData,
@@ -25,6 +26,8 @@ enum API {
   ADDSPU_URL = '/admin/product/saveSpuInfo',
   // 更新SPU
   UPDATESPU_URL = '/admin/product/updateSpuInfo',
+  // 追加一个新的sku
+  ADDSKU_URL = '/admin/product/updateSkuInfo'
 }
 
 // 获取某个三级分类的spu数据    {page}/{limit}
@@ -59,3 +62,6 @@ export const reqAddOrUpdateSpu = (data: SpuData) => {
     return request.post<any, any>(API.ADDSPU_URL, data)
   }
 }
+
+// 添加sku
+export const reqAddSku = (data: SkuData) => request.post<any, any>(API.ADDSKU_URL, data)

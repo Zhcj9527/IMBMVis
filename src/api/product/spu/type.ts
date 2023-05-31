@@ -86,3 +86,25 @@ export interface AllSaleAttr {
 export interface AllSaleAttrResponseData extends ResponseData {
   data: AllSaleAttr[]
 }
+
+// 添加sku的ts
+export interface SkuAttrValue {
+  attrId: number | string
+  valueId: number | string
+}
+export interface SkuSaleAttrValue {
+  saleAttrId: number | string
+  saleAttrValueId: number | string
+}
+export interface SkuData {
+  category3Id: string | number
+  spuId: string | number
+  tmId: string | number
+  skuName: string
+  price: string | number
+  weight: string | number
+  skuDesc: string
+  skuAttrValueList: SkuAttrValue[]
+  skuSaleAttrValueList: SkuSaleAttrValue[]
+  skuDefaultImg: string
+}

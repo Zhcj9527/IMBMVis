@@ -15,7 +15,7 @@
           <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
           <el-table-column label="操作">
             <template #="{ row, $index }">
-              <el-button type="primary" size="small" icon="Plus" title="add sku" @click="addSku"></el-button>
+              <el-button type="primary" size="small" icon="Plus" title="add sku" @click="addSku(row)"></el-button>
               <el-button type="primary" size="small" icon="Edit" title="edit spu" @click="updateSpu(row)"></el-button>
               <el-button type="primary" size="small" icon="View" title="view sku" @click=""></el-button>
               <el-button type="primary" size="small" icon="Delete" title="delete spu" @click=""></el-button>
@@ -30,7 +30,7 @@
       <!-- add|update SPU -->
       <SpuForm ref="spu" v-show="switchScene === 1" @changeScene="changeScene"></SpuForm>
       <!-- add SKU -->
-      <SkuForm v-show="switchScene === 2" @changeScene="changeScene"></SkuForm>
+      <SkuForm ref="sku" v-show="switchScene === 2" @changeScene="changeScene"></SkuForm>
     </el-card>
   </div>
 </template>
@@ -60,6 +60,8 @@ let total = ref<number>(0)
 let switchScene = ref<number>(0)
 // 获取spu组件
 let spu = ref<any>()
+// 获取sku组件
+let sku = ref<any>()
 
 // 监听三级分类id
 watch(
@@ -109,9 +111,11 @@ const updateSpu = (row: SpuData) => {
   spu.value.initHasSpuData(row)
 }
 // 添加sku
-const addSku = () => {
+const addSku = (row: SpuData) => {
   // 点击添加sku，切换场景为2
   switchScene.value = 2
+  // 调用子组件方法初始化sku数据
+  sku.value.initAddSku(categoryStore.c1Id, categoryStore.c2Id, row)
 }
 </script>
 
