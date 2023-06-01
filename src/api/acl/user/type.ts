@@ -48,5 +48,3 @@ export interface UserRoleData {
   roleIdList: number[]
   userId: number
 }
-
-
