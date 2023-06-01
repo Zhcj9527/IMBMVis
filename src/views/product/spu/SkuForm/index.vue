@@ -6,39 +6,71 @@
         <el-input v-model="skuParams.skuName" placeholder="sku"></el-input>
       </el-form-item>
       <el-form-item label="价格">
-        <el-input v-model="skuParams.price" placeholder="price" type="number"></el-input>
+        <el-input
+          v-model="skuParams.price"
+          placeholder="price"
+          type="number"
+        ></el-input>
       </el-form-item>
       <el-form-item label="重量">
-        <el-input v-model="skuParams.weight" placeholder="weight" type="number"></el-input>
+        <el-input
+          v-model="skuParams.weight"
+          placeholder="weight"
+          type="number"
+        ></el-input>
       </el-form-item>
       <el-form-item label="sku描述">
-        <el-input v-model="skuParams.skuDesc" placeholder="sku dec" type="textarea"></el-input>
+        <el-input
+          v-model="skuParams.skuDesc"
+          placeholder="sku dec"
+          type="textarea"
+        ></el-input>
       </el-form-item>
       <el-form-item label="平台属性">
         <el-form :inline="true" label-width="80px">
-          <el-form-item v-for="(item, index) in attrArr" :key="item.id" :label="item.attrName" style="margin-top: 5px">
+          <el-form-item
+            v-for="(item, index) in attrArr"
+            :key="item.id"
+            :label="item.attrName"
+            style="margin-top: 5px"
+          >
             <!-- 不需要在找个响应式数据存，直接存在item自身上就行，提交时统一处理 -->
             <el-select v-model="item.attrIdAndValueId">
-              <el-option v-for="(attrValue, index) in item.attrValueList" :key="attrValue.id" :label="attrValue.valueName"
-                :value="`${attrValue.attrId}:${attrValue.id}`"></el-option>
+              <el-option
+                v-for="(attrValue, index) in item.attrValueList"
+                :key="attrValue.id"
+                :label="attrValue.valueName"
+                :value="`${attrValue.attrId}:${attrValue.id}`"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-form>
       </el-form-item>
       <el-form-item label="销售属性">
         <el-form :inline="true">
-          <el-form-item v-for="(item, index) in saleArr" :key="item.id" :label="item.saleAttrName">
+          <el-form-item
+            v-for="(item, index) in saleArr"
+            :key="item.id"
+            :label="item.saleAttrName"
+          >
             <el-select v-model="item.saleIdAndValueId">
-              <el-option v-for="(saleAttrValue, index) in item.spuSaleAttrValueList" :key="saleAttrValue.id"
+              <el-option
+                v-for="(saleAttrValue, index) in item.spuSaleAttrValueList"
+                :key="saleAttrValue.id"
                 :label="saleAttrValue.saleAttrValueName"
-                :value="`${saleAttrValue.spuId}:${saleAttrValue.id}`"></el-option>
+                :value="`${saleAttrValue.spuId}:${saleAttrValue.id}`"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-form>
       </el-form-item>
       <el-form-item label="图片名称">
         <el-table :data="imgArr" border ref="table">
-          <el-table-column type="selection" width="80px" align="center"></el-table-column>
+          <el-table-column
+            type="selection"
+            width="80px"
+            align="center"
+          ></el-table-column>
           <el-table-column label="图片">
             <template #="{ row, $index }">
               <img :src="row.imgUrl" alt="" style="width: 40px; height: 40px" />

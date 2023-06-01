@@ -42,9 +42,9 @@ export interface SkuResponseData extends ResponseData {
     orders: []
     optimizeCountSql: boolean
     hitCount: boolean
-    countId: null,
-    maxLimit: null,
-    searchCount: boolean,
+    countId: null
+    maxLimit: null
+    searchCount: boolean
     pages: number
   }
 }
@@ -53,11 +53,3 @@ export interface SkuResponseData extends ResponseData {
 export interface SkuInfoResponseData extends ResponseData {
   data: SkuData
 }
-
-
-
-
-
-
-
-

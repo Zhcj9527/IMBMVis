@@ -4,37 +4,93 @@
     <Category :scene="scene"></Category>
     <el-card shadow="hover" style="margin: 10px 0">
       <div v-show="switchScene === 0">
-        <el-button type="primary" size="default" icon="Plus" @click="addSpu"
-          :disabled="categoryStore.c3Id ? false : true">
+        <el-button
+          type="primary"
+          size="default"
+          icon="Plus"
+          @click="addSpu"
+          :disabled="categoryStore.c3Id ? false : true"
+        >
           添加SPU
         </el-button>
         <el-table :data="records" border stripe style="margin: 10px 0">
           <!-- v-for="col in columns" :prop="col.id" :key="col.id" :label="col.label" :width="col.width" -->
-          <el-table-column label="序号" type="index" align="center" width="80px"></el-table-column>
+          <el-table-column
+            label="序号"
+            type="index"
+            align="center"
+            width="80px"
+          ></el-table-column>
           <el-table-column label="SPU名称" prop="spuName"></el-table-column>
-          <el-table-column label="SPU描述" prop="description" show-overflow-tooltip></el-table-column>
+          <el-table-column
+            label="SPU描述"
+            prop="description"
+            show-overflow-tooltip
+          ></el-table-column>
           <el-table-column label="操作">
             <template #="{ row, $index }">
-              <el-button type="primary" size="small" icon="Plus" title="add sku" @click="addSku(row)"></el-button>
-              <el-button type="primary" size="small" icon="Edit" title="edit spu" @click="updateSpu(row)"></el-button>
-              <el-button type="primary" size="small" icon="View" title="view sku" @click="findSku(row)"></el-button>
-              <el-popconfirm :title="`Are you sure to delete ${row.spuName}?`" width="200px" @confirm="deleteSpu(row)">
+              <el-button
+                type="primary"
+                size="small"
+                icon="Plus"
+                title="add sku"
+                @click="addSku(row)"
+              ></el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="Edit"
+                title="edit spu"
+                @click="updateSpu(row)"
+              ></el-button>
+              <el-button
+                type="primary"
+                size="small"
+                icon="View"
+                title="view sku"
+                @click="findSku(row)"
+              ></el-button>
+              <el-popconfirm
+                :title="`Are you sure to delete ${row.spuName}?`"
+                width="200px"
+                @confirm="deleteSpu(row)"
+              >
                 <template #reference>
-                  <el-button type="primary" size="small" icon="Delete" title="delete spu"></el-button>
+                  <el-button
+                    type="primary"
+                    size="small"
+                    icon="Delete"
+                    title="delete spu"
+                  ></el-button>
                 </template>
               </el-popconfirm>
             </template>
           </el-table-column>
         </el-table>
         <!-- 分页器 -->
-        <el-pagination v-model:current-page="pageNo" v-model:page-size="pageSize" :page-sizes="[3, 5, 7, 9]"
-          :background="true" layout=" prev, pager, next, jumper, ->,sizes,total" :total="total" @current-change="getSpu"
-          @size-change="handleSizeChange" />
+        <el-pagination
+          v-model:current-page="pageNo"
+          v-model:page-size="pageSize"
+          :page-sizes="[3, 5, 7, 9]"
+          :background="true"
+          layout=" prev, pager, next, jumper, ->,sizes,total"
+          :total="total"
+          @current-change="getSpu"
+          @size-change="handleSizeChange"
+        />
       </div>
       <!-- add|update SPU -->
-      <SpuForm ref="spu" v-show="switchScene === 1" @changeScene="changeScene"></SpuForm>
+      <SpuForm
+        ref="spu"
+        v-show="switchScene === 1"
+        @changeScene="changeScene"
+      ></SpuForm>
       <!-- add SKU -->
-      <SkuForm ref="sku" v-show="switchScene === 2" @changeScene="changeScene"></SkuForm>
+      <SkuForm
+        ref="sku"
+        v-show="switchScene === 2"
+        @changeScene="changeScene"
+      ></SkuForm>
       <!-- dialog对话框 -->
       <el-dialog v-model="dialogShow" title="SKU列表">
         <el-table :data="skuArr" border stripe>
