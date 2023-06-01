@@ -7,15 +7,20 @@
           <el-input v-model="keyWord" placeholder="请输入用户名..." clearable @change=""></el-input>
         </el-form-item>
         <el-form-item label="">
-          <el-button type="primary" size="default" @click="search" :disabled="keyWord ? false : true">search</el-button>
-          <el-button type="primary" size="default" @click="reset">reset</el-button>
+          <el-button type="primary" size="default" @click="search" :disabled="keyWord ? false : true">
+            search
+          </el-button>
+          <el-button type="primary" size="default" @click="reset">
+            reset
+          </el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card shadow="hover" style="margin: 10px 0">
       <el-button type="primary" size="default" @click="addUser">添加</el-button>
-      <el-button type="primary" size="default" :disabled="selectArr.length == 0"
-        @click="deleteSelectUser">批量删除</el-button>
+      <el-button type="primary" size="default" :disabled="selectArr.length == 0" @click="deleteSelectUser">
+        批量删除
+      </el-button>
       <!-- table :data="" -->
       <el-table :data="userInfoArr" border style="margin: 10px 0" @selection-change="selectChange">
         <!-- v-for="col in columns" :prop="col.id" :key="col.id" :label="col.label" :width="col.width" -->
@@ -37,7 +42,9 @@
             </el-button>
             <el-popconfirm :title="`Are you sure to delete ${row.username}?`" width="200px" @confirm="deleteUser(row)">
               <template #reference>
-                <el-button type="primary" size="small" icon="Delete">删除</el-button>
+                <el-button type="primary" size="small" icon="Delete">
+                  删除
+                </el-button>
               </template>
             </el-popconfirm>
           </template>
@@ -118,7 +125,7 @@ import {
   reqAllRole,
   reqSetUserRole,
   reqRemoveUser,
-  reqSelectUser
+  reqSelectUser,
 } from '@/api/acl/user'
 // ts type
 import type {
@@ -166,7 +173,11 @@ let keyWord = ref<string>('')
 // 获取用户账号信息
 const getUserInfo = async (pager = 1) => {
   pageNo.value = pager
-  let result: UserResponseData = await reqUserInfo(pageNo.value, pageSize.value, keyWord.value)
+  let result: UserResponseData = await reqUserInfo(
+    pageNo.value,
+    pageSize.value,
+    keyWord.value,
+  )
   if (result.code === 200) {
     total.value = result.data.total
     userInfoArr.value = result.data.records
@@ -347,7 +358,6 @@ const search = () => {
 const reset = () => {
   settingStore.refresh = !settingStore.refresh
 }
-
 
 // 挂载获取用户信息
 onMounted(() => {
