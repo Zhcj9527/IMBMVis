@@ -4,10 +4,20 @@
       <!-- :model="form" ref="form" :rules="rules" label-width="80px" -->
       <el-form :inline="true" class="form">
         <el-form-item label="用户名">
-          <el-input v-model="keyWord" placeholder="请输入用户名..." clearable @change=""></el-input>
+          <el-input
+            v-model="keyWord"
+            placeholder="请输入用户名..."
+            clearable
+            @change=""
+          ></el-input>
         </el-form-item>
         <el-form-item label="">
-          <el-button type="primary" size="default" @click="search" :disabled="keyWord ? false : true">
+          <el-button
+            type="primary"
+            size="default"
+            @click="search"
+            :disabled="keyWord ? false : true"
+          >
             search
           </el-button>
           <el-button type="primary" size="default" @click="reset">
@@ -18,29 +28,82 @@
     </el-card>
     <el-card shadow="hover" style="margin: 10px 0">
       <el-button type="primary" size="default" @click="addUser">添加</el-button>
-      <el-button type="primary" size="default" :disabled="selectArr.length == 0" @click="deleteSelectUser">
+      <el-button
+        type="primary"
+        size="default"
+        :disabled="selectArr.length == 0"
+        @click="deleteSelectUser"
+      >
         批量删除
       </el-button>
       <!-- table :data="" -->
-      <el-table :data="userInfoArr" border style="margin: 10px 0" @selection-change="selectChange">
+      <el-table
+        :data="userInfoArr"
+        border
+        style="margin: 10px 0"
+        @selection-change="selectChange"
+      >
         <!-- v-for="col in columns" :prop="col.id" :key="col.id" :label="col.label" :width="col.width" -->
         <el-table-column type="selection" align="center"></el-table-column>
-        <el-table-column label="#" type="index" align="center"></el-table-column>
+        <el-table-column
+          label="#"
+          type="index"
+          align="center"
+        ></el-table-column>
         <el-table-column label="ID" prop="id" align="center"></el-table-column>
-        <el-table-column label="用户名字" prop="username" align="center" show-overflow-tooltip></el-table-column>
-        <el-table-column label="用户名称" prop="name" align="center" show-overflow-tooltip></el-table-column>
-        <el-table-column label="用户角色" prop="roleName" align="center" show-overflow-tooltip></el-table-column>
-        <el-table-column label="创建时间" prop="createTime" align="center" show-overflow-tooltip></el-table-column>
-        <el-table-column label="更新时间" prop="updateTime" align="center" show-overflow-tooltip></el-table-column>
+        <el-table-column
+          label="用户名字"
+          prop="username"
+          align="center"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="用户名称"
+          prop="name"
+          align="center"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="用户角色"
+          prop="roleName"
+          align="center"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="创建时间"
+          prop="createTime"
+          align="center"
+          show-overflow-tooltip
+        ></el-table-column>
+        <el-table-column
+          label="更新时间"
+          prop="updateTime"
+          align="center"
+          show-overflow-tooltip
+        ></el-table-column>
         <el-table-column label="操作" width="300px" align="center">
           <template #="{ row, $index }">
-            <el-button type="primary" size="small" icon="User" @click="setRole(row)">
+            <el-button
+              type="primary"
+              size="small"
+              icon="User"
+              @click="setRole(row)"
+            >
               分配角色
             </el-button>
-            <el-button type="primary" size="small" icon="Edit" @click="updateUser(row)">
+            <el-button
+              type="primary"
+              size="small"
+              icon="Edit"
+              @click="updateUser(row)"
+            >
               编辑
             </el-button>
-            <el-popconfirm :title="`Are you sure to delete ${row.username}?`" width="200px" @confirm="deleteUser(row)">
+            <el-popconfirm
+              :title="`Are you sure to delete ${row.username}?`"
+              width="200px"
+              @confirm="deleteUser(row)"
+            >
               <template #reference>
                 <el-button type="primary" size="small" icon="Delete">
                   删除
@@ -52,9 +115,16 @@
       </el-table>
       <!-- 分页器 -->
       <!-- @size-change="handleSizeChange"  -->
-      <el-pagination v-model:current-page="pageNo" v-model:page-size="pageSize" :page-sizes="[5, 7, 9, 11]"
-        :background="true" layout=" prev, pager, next, jumper, ->, sizes,total" :total="total"
-        @current-change="getUserInfo" @size-change="handleSizeChange" />
+      <el-pagination
+        v-model:current-page="pageNo"
+        v-model:page-size="pageSize"
+        :page-sizes="[5, 7, 9, 11]"
+        :background="true"
+        layout=" prev, pager, next, jumper, ->, sizes,total"
+        :total="total"
+        @current-change="getUserInfo"
+        @size-change="handleSizeChange"
+      />
     </el-card>
     <!-- drawer，添加|修改用户信息 -->
     <el-drawer v-model="drawer" direction="rtl">
@@ -65,13 +135,26 @@
         <!-- :model=" " ref="form" :rules="rules" label-width="80px" :inline="false" size="normal" -->
         <el-form :model="userParams" :rules="rules" ref="formRef">
           <el-form-item label="用户姓名" prop="username">
-            <el-input placeholder="请你输入用户的姓名" v-model="userParams.username"></el-input>
+            <el-input
+              placeholder="请你输入用户的姓名"
+              v-model="userParams.username"
+            ></el-input>
           </el-form-item>
           <el-form-item label="用户昵称" prop="name">
-            <el-input placeholder="请你输入用户的昵称" v-model="userParams.name"></el-input>
+            <el-input
+              placeholder="请你输入用户的昵称"
+              v-model="userParams.name"
+            ></el-input>
           </el-form-item>
-          <el-form-item label="用户密码" prop="password" v-if="userParams.id ? false : true">
-            <el-input placeholder="请你输入用户的密码" v-model="userParams.password"></el-input>
+          <el-form-item
+            label="用户密码"
+            prop="password"
+            v-if="userParams.id ? false : true"
+          >
+            <el-input
+              placeholder="请你输入用户的密码"
+              v-model="userParams.password"
+            ></el-input>
           </el-form-item>
         </el-form>
       </template>
@@ -94,12 +177,23 @@
           </el-form-item>
           <el-form-item label="角色列表">
             <!-- v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange" -->
-            <el-checkbox v-model="checkAll" :indeterminate="isIndeterminate" @change="handleCheckAllChange">
+            <el-checkbox
+              v-model="checkAll"
+              :indeterminate="isIndeterminate"
+              @change="handleCheckAllChange"
+            >
               全选
             </el-checkbox>
             <!-- v-model="checkedCities" @change="handleCheckedCitiesChange" -->
-            <el-checkbox-group v-model="assignRoles" @change="handleCheckedCitiesChange">
-              <el-checkbox v-for="(role, index) in allRoles" :key="index" :label="role">
+            <el-checkbox-group
+              v-model="assignRoles"
+              @change="handleCheckedCitiesChange"
+            >
+              <el-checkbox
+                v-for="(role, index) in allRoles"
+                :key="index"
+                :label="role"
+              >
                 {{ role.roleName }}
               </el-checkbox>
             </el-checkbox-group>
