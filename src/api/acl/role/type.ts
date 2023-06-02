@@ -30,7 +30,6 @@ export interface AllRoleResponseData extends ResponseData {
   }
 }
 
-
 // 获取全部的菜单与按钮的数据ts
 export interface MenuData {
   id: number
@@ -50,5 +49,3 @@ export interface MenuData {
 export interface MenuResponseData extends ResponseData {
   data: MenuData[]
 }
-
-

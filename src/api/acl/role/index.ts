@@ -15,7 +15,7 @@ enum API {
   // 给相应的职位分配权限 post
   SETPERMISSION_URL = '/admin/acl/permission/doAssign/?',
   // 删除角色  delete
-  REMOVEROLE_URL = '/admin/acl/role/remove/'
+  REMOVEROLE_URL = '/admin/acl/role/remove/',
 }
 
 // 获取全部职位 {page}/{limit}
@@ -34,11 +34,13 @@ export const reqAddOrUpdate = (data: RoleData) => {
   }
 }
 // 获取全部的菜单与按钮的数据 {roleId}
-export const reqAllMenuList = (roleId: number) => request.get<any, MenuResponseData>(API.ALLPERMISSION_URL + roleId)
+export const reqAllMenuList = (roleId: number) =>
+  request.get<any, MenuResponseData>(API.ALLPERMISSION_URL + roleId)
 // 给相应的职位分配权限 post
-export const reqSetPermission = (roleId: number, permissionId: number[]) => request.post<any, any>(API.SETPERMISSION_URL + `roleId=${roleId}&permissionId=${permissionId}`)
+export const reqSetPermission = (roleId: number, permissionId: number[]) =>
+  request.post<any, any>(
+    API.SETPERMISSION_URL + `roleId=${roleId}&permissionId=${permissionId}`,
+  )
 // 删除角色  {id}
-export const reqRemoveRole = (roleId: number) => request.delete<any, any>(API.REMOVEROLE_URL + roleId)
-
-
-
+export const reqRemoveRole = (roleId: number) =>
+  request.delete<any, any>(API.REMOVEROLE_URL + roleId)
