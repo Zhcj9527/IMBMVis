@@ -1,18 +1,45 @@
 <template>
-  <el-button icon="Refresh" size="small" circle @click="updateRefresh"></el-button>
-  <el-button icon="FullScreen" size="small" circle @click="fullScreen"></el-button>
-  <el-popover placement="top-start" title="主题设置" :width="300" trigger="hover">
+  <el-button
+    icon="Refresh"
+    size="small"
+    circle
+    @click="updateRefresh"
+  ></el-button>
+  <el-button
+    icon="FullScreen"
+    size="small"
+    circle
+    @click="fullScreen"
+  ></el-button>
+  <el-popover
+    placement="top-start"
+    title="主题设置"
+    :width="300"
+    trigger="hover"
+  >
     <!-- 表单元素 -->
     <!-- :model="form" ref="form" :rules="rules" label-width="80px" :inline="false" size="normal" -->
     <el-form label-width="250px" label-position="left">
       <el-form-item label="主题颜色">
         <!-- v-model="color" -->
-        <el-color-picker @change="setColor" v-model="color" size="small" show-alpha :predefine="predefineColors" />
+        <el-color-picker
+          @change="setColor"
+          v-model="color"
+          size="small"
+          show-alpha
+          :predefine="predefineColors"
+        />
       </el-form-item>
       <el-form-item label="暗黑模式">
         <!-- v-model="value" -->
-        <el-switch @change="changeDark" v-model="dark" size="small" inline-prompt active-icon="MoonNight"
-          inactive-icon="Sunny" />
+        <el-switch
+          @change="changeDark"
+          v-model="dark"
+          size="small"
+          inline-prompt
+          active-icon="MoonNight"
+          inactive-icon="Sunny"
+        />
       </el-form-item>
     </el-form>
     <template #reference>
@@ -41,7 +68,7 @@
 import setting from '../../../setting'
 import { useSettingStore } from '@/store/modules/setting'
 import { useUserStore } from '@/store/modules/user'
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 let settingStore = useSettingStore()
@@ -103,15 +130,14 @@ const logout = async () => {
 const changeDark = () => {
   // 获取HTML的根节点
   let html = document.documentElement
-  console.log(html.className);
-  dark.value ? html.className = 'dark' : html.className = ''
+  console.log(html.className)
+  dark.value ? (html.className = 'dark') : (html.className = '')
 }
 // 主题颜色的设置
 const setColor = () => {
   let html = document.documentElement
-  html.style.setProperty('--el-color-primary', color.value) 
+  html.style.setProperty('--el-color-primary', color.value)
 }
-
 </script>
 
 <!-- 给组件个名字 -->
