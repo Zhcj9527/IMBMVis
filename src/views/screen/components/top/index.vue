@@ -13,12 +13,11 @@
   </div>
 </template>
 
-<script setup lang='ts'>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
-import moment from 'moment';
+<script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import moment from 'moment'
 // router
-import { useRouter } from 'vue-router';
-
+import { useRouter } from 'vue-router'
 
 let router = useRouter()
 // 储存当前时间
@@ -35,7 +34,7 @@ const goHome = () => {
 onMounted(() => {
   timer.value = setTimeout(() => {
     time.value = moment().format('YYYY年-MM月-DD日: hh:mm:ss')
-  }, 1000);
+  }, 1000)
 })
 // 卸载前清除计时器
 onBeforeUnmount(() => {
@@ -43,7 +42,7 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .top {
   display: flex;
 

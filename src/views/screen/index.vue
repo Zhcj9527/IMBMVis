@@ -2,11 +2,16 @@
   <div class="container">
     <!-- 数据大屏展示区域 -->
     <div class="screen" ref="screen">
+      <!-- 数据大屏的顶部 -->
       <div class="top">
         <Top></Top>
       </div>
       <div class="bottom">
-        <div class="left">左侧</div>
+        <div class="left">
+          <Tourist class="tourist"></Tourist>
+          <Sex class="sex"></Sex>
+          <Age class="age"></Age>
+        </div>
         <div class="center">中间</div>
         <div class="right">右侧</div>
       </div>
@@ -15,15 +20,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-// 子组件
+import { ref, onMounted } from 'vue'
+// 子组件 top
 import Top from './components/top/index.vue'
+// 子组件 left
+import Tourist from './components/tourist/index.vue'
+import Sex from './components/sex/index.vue'
+import Age from './components/age/index.vue'
 
 // 数据大屏的dom
 let screen = ref<HTMLElement>()
 
 // 定义大屏缩放的比例
-const getScale = (w:number = 1920, h:number = 1080) => {
+const getScale = (w: number = 1920, h: number = 1080) => {
   const ww = window.innerWidth / w
   const wh = window.innerHeight / h
   return ww < wh ? ww : wh
@@ -55,7 +64,7 @@ onMounted(() => {
     height: 1080px;
     // background: red;
 
-    .top{
+    .top {
       width: 100%;
       height: 40px;
       // background-color: aqua;
@@ -64,13 +73,31 @@ onMounted(() => {
       display: flex;
 
       .right {
-        flex: 1
+        flex: 1;
       }
-      .center{
-        flex: 2
+      .center {
+        flex: 2;
       }
-      .left{
-        flex: 1
+      .left {
+        flex: 1;
+        height: 1040px;
+        // background-color: red;
+
+        display: flex;
+        flex-direction: column;
+
+        .tourist{
+          flex: 1.2;
+          // background-color: antiquewhite;
+        }
+        .sex {
+          flex: 1;
+          // background-color: aqua;
+        }
+        .age{
+          flex: 1;
+          // background-color: skyblue;
+        }
       }
     }
   }
