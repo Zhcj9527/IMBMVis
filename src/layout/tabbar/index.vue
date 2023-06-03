@@ -29,6 +29,7 @@ export default {
 
   width: 100%;
   height: 100%;
+  border-bottom: 1px solid #ccc;
 
   .tabbar_left {
     display: flex;
