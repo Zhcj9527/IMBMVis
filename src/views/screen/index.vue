@@ -103,7 +103,6 @@ onMounted(() => {
         .couter {
           flex: 1;
         }
-
       }
       .center {
         flex: 2;

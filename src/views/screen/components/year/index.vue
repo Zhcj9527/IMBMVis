@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 
@@ -23,37 +23,34 @@ onMounted(() => {
       left: '50%',
       textStyle: {
         color: 'yellowgreen',
-        fontSize: 20
+        fontSize: 20,
       },
     },
     // x|y轴
     xAxis: {
-      type: 'category'
+      type: 'category',
     },
     yAxis: {
-      show: false
+      show: false,
     },
     grid: {
       left: 20,
       bottom: 20,
-      right: 20
+      right: 20,
     },
     // 系列
     series: [
       {
         type: 'scatter',
         data: [21, 12, 45, 76, 48, 12, 31, 64, 121, 79, 45],
-        symbol: 'triangle'
-      }
-    ]
+        symbol: 'triangle',
+      },
+    ],
   })
 })
-
-
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .year_container {
   // margin: 20px 0;
 

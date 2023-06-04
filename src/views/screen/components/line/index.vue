@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import * as echarts from 'echarts'
 import { ref, onMounted } from 'vue'
 
@@ -19,35 +19,35 @@ onMounted(() => {
   let myChart = echarts.init(charts.value)
   myChart.setOption({
     title: {
-      text: '游客访问量'
+      text: '游客访问量',
     },
     xAxis: {
       type: 'category',
       boundaryGap: false,
       // 分割线不要
       splitLine: {
-        show: false
+        show: false,
       },
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     },
     yAxis: {
       // 分割线不要
       splitLine: {
-        show: false
+        show: false,
       },
       // y轴线
       axisLine: {
         show: true,
       },
       axisTick: {
-        show: true
-      }
+        show: true,
+      },
     },
     grid: {
       left: 40,
       right: 20,
       top: 0,
-      bottom: 20
+      bottom: 20,
     },
     series: {
       type: 'line',
@@ -61,21 +61,25 @@ onMounted(() => {
           y: 0,
           x2: 0,
           y2: 1,
-          colorStops: [{
-            offset: 0, color: 'red' // 0% 处的颜色
-          }, {
-            offset: 1, color: 'blue' // 100% 处的颜色
-          }],
-          global: false // 缺省为 false
-        }
-      }
-    }
+          colorStops: [
+            {
+              offset: 0,
+              color: 'red', // 0% 处的颜色
+            },
+            {
+              offset: 1,
+              color: 'blue', // 100% 处的颜色
+            },
+          ],
+          global: false, // 缺省为 false
+        },
+      },
+    },
   })
 })
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .line_container {
   // margin: 0 20px;
 

@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import * as echarts from 'echarts'
 
@@ -23,26 +23,24 @@ onMounted(() => {
       left: '50%',
       textStyle: {
         color: 'yellowgreen',
-        fontSize: 20
+        fontSize: 20,
       },
       // 子标题
       subtext: '各大景区排行',
       subtextStyle: {
         color: 'yellowgreen',
-        fontSize: 16
-      }
+        fontSize: 16,
+      },
     },
     // x|y轴
     xAxis: {
-      type: 'category'
+      type: 'category',
     },
-    yAxis: {
-
-    },
+    yAxis: {},
     grid: {
       left: 20,
       bottom: 20,
-      right: 20
+      right: 20,
     },
     // 系列
     series: [
@@ -51,26 +49,23 @@ onMounted(() => {
         data: [10, 20, 30, 40, 50, 60, 70],
         label: {
           show: true,
-          position: 'top'
+          position: 'top',
         },
         showBackground: true,
         backgroundStyle: {
-          color: 'white'
-        }
+          color: 'white',
+        },
       },
       {
         type: 'line',
-        data: [10, 20, 30, 40, 50, 60, 80]
-      }
-    ]
+        data: [10, 20, 30, 40, 50, 60, 80],
+      },
+    ],
   })
 })
-
-
-
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .rank_container {
   margin: 20px 0;
 
