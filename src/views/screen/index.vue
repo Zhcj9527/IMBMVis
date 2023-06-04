@@ -12,8 +12,15 @@
           <Sex class="sex"></Sex>
           <Age class="age"></Age>
         </div>
-        <div class="center">中间</div>
-        <div class="right">右侧</div>
+        <div class="center">
+          <Map class="map"></Map>
+          <Line class="line"></Line>
+        </div>
+        <div class="right">
+          <Rank class="rank"></Rank>
+          <Year class="year"></Year>
+          <Couter class="couter"></Couter>
+        </div>
       </div>
     </div>
   </div>
@@ -27,6 +34,13 @@ import Top from './components/top/index.vue'
 import Tourist from './components/tourist/index.vue'
 import Sex from './components/sex/index.vue'
 import Age from './components/age/index.vue'
+// 子组件 main
+import Map from './components/map/index.vue'
+import Line from './components/line/index.vue'
+// 子组件 right
+import Rank from './components/rank/index.vue'
+import Year from './components/year/index.vue'
+import Couter from './components/couter/index.vue'
 
 // 数据大屏的dom
 let screen = ref<HTMLElement>()
@@ -74,9 +88,36 @@ onMounted(() => {
 
       .right {
         flex: 1;
+        // background-color: #fff;
+        display: flex;
+        flex-direction: column;
+
+        .rank {
+          flex: 1.2;
+        }
+
+        .year {
+          flex: 1;
+        }
+
+        .couter {
+          flex: 1;
+        }
+
       }
       .center {
         flex: 2;
+        display: flex;
+        flex-direction: column;
+
+        margin: 0 20px;
+
+        .map {
+          flex: 4;
+        }
+        .line {
+          flex: 1.5;
+        }
       }
       .left {
         flex: 1;
@@ -86,7 +127,7 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
 
-        .tourist{
+        .tourist {
           flex: 1.2;
           // background-color: antiquewhite;
         }
@@ -94,7 +135,7 @@ onMounted(() => {
           flex: 1;
           // background-color: aqua;
         }
-        .age{
+        .age {
           flex: 1;
           // background-color: skyblue;
         }
