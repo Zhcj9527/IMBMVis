@@ -59,7 +59,6 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-
 // 异步路由
 export const asyncRoute = [
   {

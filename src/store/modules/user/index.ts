@@ -72,15 +72,18 @@ export const useUserStore = defineStore(Names.USER, {
         this.avatar = result.data.avatar
         this.buttons = result.data.buttons
         // 用户信息过滤成功，获取当前用户展示的异步路由
-        let userAsyncRoute = filterAsyncRoute(cloneDeep(asyncRoute), result.data.routes)
+        let userAsyncRoute = filterAsyncRoute(
+          cloneDeep(asyncRoute),
+          result.data.routes,
+        )
         // 菜单的数据
-        this.menuRoutes = [...constantRoutes, ...userAsyncRoute, ...anyRoute];
+        this.menuRoutes = [...constantRoutes, ...userAsyncRoute, ...anyRoute]
         // 目前路由器管理的只有常量路由：用户的异步路由以及任意路由要动态追加
-        [...userAsyncRoute, ...anyRoute].forEach((route: any) => {
+        ;[...userAsyncRoute, ...anyRoute].forEach((route: any) => {
           router.addRoute(route)
         })
-        console.log(router.getRoutes());
-        
+        console.log(router.getRoutes())
+
         return 'ok'
       } else {
         return Promise.reject(new Error(result.message))
