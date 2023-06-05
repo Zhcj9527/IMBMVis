@@ -22,6 +22,8 @@ import './permission.ts'
 import pinia from './store'
 // 暗黑模式
 import 'element-plus/theme-chalk/dark/css-vars.css'
+// 引入自定义指令
+import { isHasButton } from './directive/has.ts'
 
 const app = createApp(App) // 获取应用实例对象
 
@@ -35,5 +37,7 @@ app.use(globalComponent)
 app.use(router)
 // 安装pinia
 app.use(pinia)
+// 自定义指令
+isHasButton(app)
 
 app.mount('#app')

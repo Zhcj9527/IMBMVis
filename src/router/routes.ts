@@ -34,16 +34,6 @@ export const constantRoutes: Array<RouteRecordRaw> = [
           icon: 'HomeFilled', // 前缀图标
         },
       },
-      /* {
-        path: '/ceshi3',
-        name: 'ceshi3',
-        component: () => import('@/views/home/index.vue'),
-        meta: {
-          title: 'test3',
-          isHidden: false, // 是否隐藏
-          icon: 'Histogram', // 前缀图标
-        }
-      }, */
     ],
   },
   {
@@ -56,6 +46,22 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       icon: 'Monitor', // 前缀图标
     },
   },
+  {
+    // 404
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/404/index.vue'),
+    meta: {
+      title: '404',
+      isHidden: true, // 是否隐藏
+      icon: 'Check', // 前缀图标
+    },
+  },
+]
+
+
+// 异步路由
+export const asyncRoute = [
   {
     path: '/acl',
     name: 'Acl',
@@ -152,22 +158,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
       },
     ],
   },
-  {
-    // 404
-    path: '/404',
-    name: '404',
-    component: () => import('@/views/404/index.vue'),
-    meta: {
-      title: '404',
-      isHidden: true, // 是否隐藏
-      icon: 'Check', // 前缀图标
-    },
-  },
+]
+
+// 任意路由
+export const anyRoute = [
   {
     // 任意路由，没找到以上页面，重定向到404
     path: '/:pathMatch(.*)*',
     redirect: '/404',
-    name: 'any',
+    name: 'Any',
     meta: {
       title: '任意路由',
       isHidden: true, // 是否隐藏

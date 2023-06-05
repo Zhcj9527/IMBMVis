@@ -2,7 +2,7 @@
   <div>
     <el-card shadow="hover">
       <div class="box">
-        <img :src="userStore.avatar!" alt="" class="avatar" />
+        <img :src="setting.logo" alt="" class="avatar" />
         <div class="bottom">
           <h1 class="title">
             {{ getTime() }} 好呀！！ {{ userStore.username }}
@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import setting from '../../setting'
 // store 挂载后加载用户信息
 import { useUserStore } from '@/store/modules/user'
 //

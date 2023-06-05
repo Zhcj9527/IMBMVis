@@ -7,6 +7,7 @@
         size="default"
         icon="Plus"
         @click="addTrademark"
+        v-has="'btn.Trademark.add'"
       >
         添加品牌
       </el-button>
